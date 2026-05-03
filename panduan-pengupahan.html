@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistem Informasi Pengawasan Ketenagakerjaan Berbasis Studi Kasus Interaktif dan Terapan</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --violet:#6C3FC4;--violet-bg:#F0EAFB;--violet-border:#C9B3F0;
+  --coral:#D94035;--coral-bg:#FEF0EF;--coral-border:#F5B5B2;
+  --sky:#0070CC;--sky-bg:#EBF5FF;--sky-border:#90C8F8;
+  --mint:#077A52;--mint-bg:#E8F8F2;--mint-border:#7DD6B0;
+  --orange:#C2521A;--orange-bg:#FEF4EC;--orange-border:#F8BB8A;
+  --yellow:#A86A00;--yellow-bg:#FFFBEB;--yellow-border:#F5CC5A;
+  --pink:#B0246A;--pink-bg:#FEF0F7;--pink-border:#F3A8D0;
+  --lime:#5A8A00;--lime-bg:#F2FBE4;--lime-border:#BADE72;
+  --ink:#18182A;--ink2:#2E2E46;--gray:#5A5A72;--gray-light:#9898AA;
+  --surface:#F7F7FC;--card:#FFFFFF;--border:#E2E2EE;--text:#38384E;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:"Plus Jakarta Sans",sans-serif;background:var(--surface);color:var(--text);line-height:1.75;font-size:15px;}
+
+/* COVER */
+#cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 24px;position:relative;overflow:hidden;background:#fff;}
+.blob{position:absolute;border-radius:50%;pointer-events:none;}
+.b1{width:560px;height:560px;background:radial-gradient(circle,rgba(108,63,196,.12) 0%,transparent 70%);top:-120px;right:-120px;}
+.b2{width:440px;height:440px;background:radial-gradient(circle,rgba(7,122,82,.1) 0%,transparent 70%);bottom:-100px;left:-100px;}
+.b3{width:300px;height:300px;background:radial-gradient(circle,rgba(0,112,204,.08) 0%,transparent 70%);top:35%;left:8%;}
+.cover-inner{position:relative;z-index:1;max-width:720px;}
+.ctag{display:inline-flex;align-items:center;gap:8px;background:var(--violet-bg);border:1.5px solid var(--violet-border);color:var(--violet);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:7px 20px;border-radius:50px;margin-bottom:28px;font-family:"Plus Jakarta Sans",sans-serif;}
+.ctag .dot{width:7px;height:7px;background:var(--violet);border-radius:50%;animation:blink 1.5s infinite;}
+.ceyebrow{font-size:12px;color:var(--gray-light);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;font-family:"Plus Jakarta Sans",sans-serif;font-weight:600;}
+.ch1{font-family:"Fraunces",serif;font-size:clamp(44px,9vw,96px);font-weight:900;line-height:.92;letter-spacing:-2px;margin-bottom:16px;color:var(--ink);}
+.ch1 .hl{background:linear-gradient(135deg,var(--violet) 0%,var(--pink) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.csub{font-size:clamp(14px,2.5vw,17px);color:var(--gray);margin-bottom:36px;font-style:italic;font-family:"Fraunces",serif;}
+.cpills{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-bottom:32px;}
+.cpill{padding:7px 15px;border-radius:50px;font-size:12px;font-weight:700;font-family:"Plus Jakarta Sans",sans-serif;}
+.cp1{background:var(--coral-bg);color:var(--coral);border:1.5px solid var(--coral-border);}
+.cp2{background:var(--sky-bg);color:var(--sky);border:1.5px solid var(--sky-border);}
+.cp3{background:var(--violet-bg);color:var(--violet);border:1.5px solid var(--violet-border);}
+.cp4{background:var(--mint-bg);color:var(--mint);border:1.5px solid var(--mint-border);}
+.cp5{background:var(--orange-bg);color:var(--orange);border:1.5px solid var(--orange-border);}
+.cp6{background:var(--pink-bg);color:var(--pink);border:1.5px solid var(--pink-border);}
+.crefs{background:var(--violet-bg);border:1.5px solid var(--violet-border);border-radius:20px;padding:18px 28px;margin-bottom:32px;}
+.crefs p{font-size:10px;color:var(--violet);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;font-weight:700;}
+.crefs strong{font-size:13px;color:var(--ink2);line-height:2.2;font-weight:700;}
+.btn-cta{background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;border:none;padding:17px 48px;font-family:"Fraunces",serif;font-size:18px;font-weight:700;border-radius:50px;cursor:pointer;box-shadow:0 8px 32px rgba(108,63,196,.3);transition:transform .2s,box-shadow .2s;letter-spacing:.3px;}
+.btn-cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 48px rgba(108,63,196,.42);}
+
+/* NAV */
+#nav{display:none;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:2px solid var(--border);}
+.prog{height:4px;background:var(--border);}
+.pf{height:100%;background:linear-gradient(90deg,var(--violet),var(--pink));transition:width .4s ease;width:0%;}
+.ni{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;padding:10px 14px;}
+.ni::-webkit-scrollbar{display:none;}
+.nb{flex-shrink:0;background:none;border:none;font-family:"Plus Jakarta Sans",sans-serif;font-size:12px;font-weight:700;color:var(--gray);padding:7px 14px;border-radius:50px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.nb:hover,.nb.on{background:var(--violet-bg);color:var(--violet);}
+
+/* LAYOUT */
+.page{display:none;}.page.active{display:block;}
+.wrap{max-width:860px;margin:0 auto;padding:52px 20px 100px;}
+
+/* CHAPTER HERO */
+.chero{position:relative;overflow:hidden;border-radius:28px;padding:52px 44px;margin-bottom:52px;}
+.chero::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--hc1),var(--hc2));}
+.chero::after{content:attr(data-L);position:absolute;right:-12px;bottom:-36px;font-family:"Fraunces",serif;font-size:220px;font-weight:900;color:rgba(255,255,255,.09);line-height:1;pointer-events:none;}
+.hi{position:relative;z-index:1;}
+.cbadge{display:inline-block;background:rgba(255,255,255,.22);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.9);padding:5px 16px;border-radius:50px;margin-bottom:14px;font-family:"Plus Jakarta Sans",sans-serif;}
+.chero h2{font-family:"Fraunces",serif;font-size:clamp(28px,6vw,52px);font-weight:900;color:#fff;line-height:1.05;margin-bottom:8px;}
+.ctline{color:rgba(255,255,255,.75);font-style:italic;font-size:15px;font-family:"Fraunces",serif;}
+
+/* TYPOGRAPHY */
+.stitle{font-family:"Fraunces",serif;font-size:22px;font-weight:700;color:var(--ink);margin:48px 0 18px;display:flex;align-items:center;gap:12px;}
+.stitle::after{content:"";flex:1;height:2px;background:var(--border);}
+.ssub{font-size:16px;font-weight:700;color:var(--violet);margin:26px 0 12px;font-family:"Fraunces",serif;}
+.bt{color:var(--text);margin-bottom:16px;line-height:1.85;font-size:15px;}
+
+/* CALLOUTS */
+.cal{display:flex;border-radius:16px;overflow:hidden;margin:20px 0;border:1.5px solid;}
+.ci{padding:0 17px;display:flex;align-items:flex-start;justify-content:center;flex-shrink:0;width:56px;font-size:21px;padding-top:21px;}
+.cb{padding:18px 20px 18px 10px;flex:1;font-size:14px;line-height:1.8;}
+.cb p{margin-bottom:7px;}.cb p:last-child{margin:0;}.cb strong{font-weight:700;}
+.cl{border-color:var(--lime-border);background:var(--lime-bg);}.cl .ci{background:rgba(90,138,0,.12);color:var(--lime);}
+.cc{border-color:var(--coral-border);background:var(--coral-bg);}.cc .ci{background:rgba(217,64,53,.1);color:var(--coral);}
+.cs{border-color:var(--sky-border);background:var(--sky-bg);}.cs .ci{background:rgba(0,112,204,.1);color:var(--sky);}
+.cm{border-color:var(--mint-border);background:var(--mint-bg);}.cm .ci{background:rgba(7,122,82,.1);color:var(--mint);}
+.cv{border-color:var(--violet-border);background:var(--violet-bg);}.cv .ci{background:rgba(108,63,196,.1);color:var(--violet);}
+.co{border-color:var(--orange-border);background:var(--orange-bg);}.co .ci{background:rgba(194,82,26,.1);color:var(--orange);}
+.cy{border-color:var(--yellow-border);background:var(--yellow-bg);}.cy .ci{background:rgba(168,106,0,.1);color:var(--yellow);}
+.cp-box{border-color:var(--pink-border);background:var(--pink-bg);}.cp-box .ci{background:rgba(176,36,106,.1);color:var(--pink);}
+
+/* FORMULA */
+.fbox{background:linear-gradient(135deg,var(--violet-bg),var(--sky-bg));border:2px solid var(--violet-border);border-radius:20px;padding:32px;text-align:center;margin:24px 0;}
+.fbox .fm{font-family:"Plus Jakarta Sans",monospace;font-size:clamp(11px,2.5vw,14px);color:var(--ink);line-height:1.9;margin-bottom:14px;word-break:break-word;font-weight:700;}
+.fbox .fn{color:var(--gray);font-size:12px;line-height:1.8;}
+
+/* GOLDEN RULE */
+.grule{background:linear-gradient(135deg,var(--coral-bg),var(--orange-bg));border:2px solid var(--coral-border);border-radius:24px;padding:32px;text-align:center;margin:24px 0;position:relative;overflow:hidden;}
+.grule::before{content:"75%";position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:"Fraunces",serif;font-size:140px;font-weight:900;color:rgba(217,64,53,.06);pointer-events:none;line-height:1;}
+.grule h3{color:var(--coral);font-family:"Fraunces",serif;font-size:19px;font-weight:700;margin-bottom:12px;}
+.rmain{font-weight:700;font-size:15px;color:var(--ink);margin-bottom:20px;font-family:"Fraunces",serif;}
+.rsplit{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+.ri{padding:13px 22px;border-radius:14px;font-size:13px;font-weight:700;text-align:center;}
+.ri.mn{background:var(--mint-bg);color:var(--mint);border:1.5px solid var(--mint-border);}
+.ri.mx{background:var(--orange-bg);color:var(--orange);border:1.5px solid var(--orange-border);}
+.rwarn{color:var(--coral);font-size:13px;font-weight:700;margin-top:10px;}
+.rnote{color:var(--gray);font-size:11px;margin-top:8px;}
+
+/* TABLES */
+.tw{overflow-x:auto;margin:20px 0;border-radius:16px;border:1.5px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+thead tr{background:var(--ink);}
+thead th{padding:14px 18px;text-align:left;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.85);font-family:"Plus Jakarta Sans",sans-serif;}
+tbody tr{border-top:1px solid var(--border);}
+tbody tr:nth-child(even){background:#FAFAFE;}
+tbody tr:hover{background:var(--violet-bg);}
+tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65;}
+
+/* SLIP GAJI */
+.slip{background:var(--card);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;margin:24px 0;font-size:13px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.sliph{background:linear-gradient(90deg,var(--sky),var(--mint));padding:16px 24px;font-weight:700;color:#fff;font-size:14px;border-bottom:1.5px solid var(--border);font-family:"Fraunces",serif;letter-spacing:.3px;}
+.srow{display:flex;justify-content:space-between;align-items:center;padding:10px 24px;border-bottom:1px solid var(--border);font-family:"Plus Jakarta Sans",sans-serif;}
+.srow:last-child{border:none;}
+.ssec{padding:8px 24px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);background:#F5F5FA;border-bottom:1px solid var(--border);font-family:"Plus Jakarta Sans",sans-serif;}
+.srow.hl{color:var(--mint);font-weight:700;background:var(--mint-bg);}
+.srow.tot{background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:16px 24px;}
+.srow.ded{color:var(--coral);}
+.snote{padding:10px 24px;font-size:11px;color:var(--gray);background:#FAFAFE;font-family:"Plus Jakarta Sans",sans-serif;}
+
+/* RED FLAGS */
+.rf{background:var(--coral-bg);border:1.5px solid var(--coral-border);border-radius:16px;padding:20px 24px;margin:16px 0;}
+.rft{color:var(--coral);font-weight:700;font-size:14px;margin-bottom:10px;font-family:"Fraunces",serif;}
+.rf ul{padding-left:20px;}.rf li{font-size:14px;line-height:1.85;color:var(--text);margin-bottom:4px;}
+
+/* SPILL YOUR THOUGHTS */
+.spill{margin-top:56px;border-top:3px solid var(--pink-border);padding-top:44px;}
+.slabel{display:inline-flex;align-items:center;gap:8px;background:var(--pink-bg);border:1.5px solid var(--pink-border);color:var(--pink);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:50px;margin-bottom:16px;font-family:"Plus Jakarta Sans",sans-serif;}
+.stit{font-family:"Fraunces",serif;font-size:26px;font-weight:700;color:var(--ink);margin-bottom:5px;}
+.ssub2{color:var(--gray);font-size:13px;margin-bottom:28px;font-style:italic;font-family:"Plus Jakarta Sans",sans-serif;}
+.scard{background:linear-gradient(135deg,var(--pink-bg),var(--orange-bg));border:1.5px solid var(--pink-border);border-radius:20px;padding:28px;margin-bottom:20px;}
+.sbadge{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--pink);margin-bottom:14px;display:flex;align-items:center;gap:7px;font-family:"Plus Jakarta Sans",sans-serif;}
+.sbadge::before{content:"";width:20px;height:2px;background:var(--pink);}
+.stext{font-size:14px;line-height:1.85;color:var(--text);}
+.squote{background:rgba(255,255,255,.75);border-left:3px solid var(--pink);padding:14px 18px;margin:14px 0;font-style:italic;font-size:14px;color:var(--ink);font-weight:600;border-radius:0 12px 12px 0;font-family:"Plus Jakarta Sans",sans-serif;}
+.sq{font-weight:700;color:var(--ink);font-size:14px;margin-top:14px;font-family:"Plus Jakarta Sans",sans-serif;}
+
+/* TEXTAREA BOX */
+.dbox{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:22px;transition:border-color .25s;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+.dbox.locked{background:#FAFAFE;border-color:var(--mint-border);}
+.dbox:focus-within:not(.locked){border-color:var(--pink-border);box-shadow:0 0 0 3px rgba(176,36,106,.07);}
+.dbox label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:10px;font-family:"Plus Jakarta Sans",sans-serif;}
+.dbox textarea{width:100%;min-height:112px;background:none;border:none;font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;color:var(--ink);resize:vertical;outline:none;line-height:1.75;}
+.dbox textarea::placeholder{color:#C0C0D0;}
+.dbox textarea:disabled{color:var(--gray);cursor:not-allowed;resize:none;}
+.char-hint{font-size:12px;color:var(--gray);margin-top:8px;text-align:right;font-family:"Plus Jakarta Sans",sans-serif;}
+
+/* SAVE BUTTON */
+.save-btn-wrap{margin-top:14px;display:none;}
+.save-btn-wrap.visible{display:flex;justify-content:flex-end;}
+.btn-save{background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;border:none;padding:12px 28px;font-family:"Fraunces",serif;font-size:15px;font-weight:700;border-radius:50px;cursor:pointer;box-shadow:0 4px 16px rgba(108,63,196,.28);transition:transform .2s,box-shadow .2s;}
+.btn-save:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(108,63,196,.38);}
+.btn-save.saved{background:var(--mint);box-shadow:0 4px 16px rgba(7,122,82,.25);cursor:default;}
+.btn-save:disabled{transform:none;}
+.save-status{font-size:12px;color:var(--mint);margin-top:8px;text-align:right;display:none;font-weight:600;font-family:"Plus Jakarta Sans",sans-serif;}
+.save-status.visible{display:block;}
+
+/* REVEAL */
+.reveal-wrap{overflow:hidden;max-height:0;transition:max-height .65s cubic-bezier(0.4,0,0.2,1),opacity .4s ease;opacity:0;}
+.reveal-wrap.open{max-height:900px;opacity:1;}
+.rtalk{background:var(--mint-bg);border:1.5px solid var(--mint-border);border-radius:20px;padding:28px;margin-top:16px;}
+.rtbadge{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mint);margin-bottom:14px;display:flex;align-items:center;gap:7px;font-family:"Plus Jakarta Sans",sans-serif;}
+.rtbadge::before{content:"";width:20px;height:2px;background:var(--mint);}
+.rtc{font-size:14px;line-height:1.85;color:var(--text);}
+.rtc ul{padding-left:20px;margin:10px 0;}.rtc li{margin-bottom:8px;}
+.rtc strong{color:var(--ink);font-weight:700;}
+.rthl{background:var(--card);border:1.5px solid var(--mint-border);border-radius:12px;padding:14px 18px;margin-top:16px;font-size:13px;color:var(--mint);font-weight:700;line-height:1.7;}
+
+/* CHAPTER NAV */
+.cnav{display:flex;gap:12px;justify-content:space-between;margin-top:56px;padding-top:32px;border-top:1.5px solid var(--border);flex-wrap:wrap;}
+.bbk,.bfw{padding:13px 26px;border-radius:50px;font-family:"Fraunces",serif;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all .2s;}
+.bbk{background:var(--surface);color:var(--text);border:1.5px solid var(--border);}
+.bbk:hover{background:var(--violet-bg);color:var(--violet);border-color:var(--violet-border);}
+.bfw{background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;margin-left:auto;box-shadow:0 4px 20px rgba(108,63,196,.28);}
+.bfw:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(108,63,196,.38);}
+
+/* REGISTRATION */
+#reg-page .wrap{max-width:580px;}
+.rhero{text-align:center;padding:48px 0 40px;}
+.rhero .em{font-size:56px;margin-bottom:16px;display:block;}
+.rhero h2{font-family:"Fraunces",serif;font-size:34px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.rhero p{color:var(--gray);font-size:15px;}
+.rform{background:var(--card);border:1.5px solid var(--border);border-radius:28px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,.07);}
+.rpriv{text-align:center;background:var(--lime-bg);border:1.5px solid var(--lime-border);border-radius:12px;padding:10px 16px;font-size:12px;color:var(--lime);margin-bottom:28px;font-weight:700;font-family:"Plus Jakarta Sans",sans-serif;}
+.fg{margin-bottom:22px;}
+.fg label{display:block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:8px;font-family:"Plus Jakarta Sans",sans-serif;}
+.fg label .opt{font-weight:500;color:#C0C0D0;text-transform:none;letter-spacing:0;margin-left:6px;font-size:11px;}
+.fg input{width:100%;padding:14px 18px;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;}
+.fg input::placeholder{color:#C0C0D0;}
+.fg input:focus{border-color:var(--violet-border);box-shadow:0 0 0 3px rgba(108,63,196,.09);}
+.bsub{width:100%;background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;border:none;padding:15px;font-family:"Fraunces",serif;font-size:17px;font-weight:700;border-radius:14px;cursor:pointer;margin-top:8px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(108,63,196,.28);}
+.bsub:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(108,63,196,.38);}
+.sts{text-align:center;padding:12px;border-radius:12px;font-size:13px;font-weight:600;margin-bottom:14px;display:none;font-family:"Plus Jakarta Sans",sans-serif;}
+.sts.snd{display:block;background:var(--sky-bg);color:var(--sky);}
+.sts.ok{display:block;background:var(--mint-bg);color:var(--mint);}
+.sts.err{display:block;background:var(--coral-bg);color:var(--coral);}
+
+/* CLOSING */
+#closing-page .wrap{max-width:740px;}
+.clhero{text-align:center;padding:48px 0 32px;}
+.clhero .em{font-size:56px;margin-bottom:16px;display:block;}
+.clhero h2{font-family:"Fraunces",serif;font-size:clamp(28px,5vw,46px);font-weight:700;color:var(--ink);margin-bottom:10px;}
+.clhero p{color:var(--gray);max-width:500px;margin:0 auto;font-size:15px;}
+.tldr{background:var(--card);border:1.5px solid var(--violet-border);border-radius:24px;padding:36px;margin:32px 0;box-shadow:0 4px 24px rgba(108,63,196,.07);}
+.tldr h3{font-family:"Fraunces",serif;font-size:22px;font-weight:700;color:var(--violet);margin-bottom:24px;text-align:center;}
+.titem{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start;}
+.tdot{width:29px;height:29px;border-radius:50%;background:var(--violet-bg);border:1.5px solid var(--violet-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--violet);font-size:12px;font-weight:700;margin-top:2px;font-family:"Fraunces",serif;}
+.titem p{font-size:14px;line-height:1.75;}.titem strong{color:var(--ink);font-weight:700;}
+.refs{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:20px;text-align:center;font-size:12px;color:var(--gray);line-height:2.2;}
+
+/* QUIZ */
+#quiz-page .wrap{max-width:720px;}
+.qhero{text-align:center;margin-bottom:40px;}
+.qhero h2{font-family:"Fraunces",serif;font-size:36px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.qhero p{color:var(--gray);font-size:15px;font-style:italic;font-family:"Fraunces",serif;}
+.qcard{background:var(--card);border:1.5px solid var(--border);border-radius:24px;padding:32px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.qcard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--violet),var(--pink));}
+.qnum{font-size:11px;color:var(--gray);margin-bottom:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;font-family:"Plus Jakarta Sans",sans-serif;}
+.qtext{font-family:"Fraunces",serif;font-size:19px;font-weight:700;color:var(--ink);margin-bottom:24px;line-height:1.4;}
+.opts{display:flex;flex-direction:column;gap:10px;}
+.obt{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:14px 18px;text-align:left;cursor:pointer;font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;font-weight:500;color:var(--text);transition:all .2s;display:flex;align-items:center;gap:12px;}
+.obt:hover:not(:disabled){border-color:var(--violet-border);background:var(--violet-bg);color:var(--violet);}
+.oltr{width:29px;height:29px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;transition:all .2s;font-family:"Fraunces",serif;}
+.obt.correct{background:var(--mint-bg);border-color:var(--mint-border);color:var(--mint);}
+.obt.correct .oltr{background:var(--mint);color:#fff;}
+.obt.wrong{background:var(--coral-bg);border-color:var(--coral-border);color:var(--coral);}
+.obt.wrong .oltr{background:var(--coral);color:#fff;}
+.obt:disabled{cursor:default;}
+.aexp{margin-top:16px;padding:14px 18px;background:var(--mint-bg);border:1.5px solid var(--mint-border);border-radius:12px;font-size:13px;color:var(--mint);line-height:1.7;display:none;font-family:"Plus Jakarta Sans",sans-serif;}
+.aexp.vis{display:block;animation:slideDown .3s ease;}
+.scard2{background:linear-gradient(135deg,var(--violet-bg),var(--sky-bg));border:2px solid var(--violet-border);border-radius:24px;padding:44px;text-align:center;margin-top:32px;display:none;}
+.scard2.vis{display:block;animation:fadeUp .5s ease;}
+.sbig{font-family:"Fraunces",serif;font-size:88px;font-weight:900;color:var(--ink);line-height:1;margin-bottom:4px;}
+.sbig span{color:var(--violet);}
+.ssub3{color:var(--gray);font-size:15px;margin-bottom:14px;}
+.smsg{font-size:17px;font-weight:700;color:var(--ink);font-family:"Fraunces",serif;}
+
+/* FEEDBACK */
+#feedback-page .wrap{max-width:660px;}
+.fbhero{text-align:center;margin-bottom:40px;}
+.fbhero h2{font-family:"Fraunces",serif;font-size:34px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.fbhero p{color:var(--gray);font-size:15px;font-style:italic;font-family:"Fraunces",serif;}
+.fbform{background:var(--card);border:1.5px solid var(--border);border-radius:28px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,.06);}
+.fbg{margin-bottom:30px;}
+.fbg>label{display:block;font-family:"Fraunces",serif;font-weight:700;font-size:16px;color:var(--ink);margin-bottom:14px;line-height:1.4;}
+.fbg>label small{font-family:"Plus Jakarta Sans",sans-serif;font-weight:500;color:var(--gray);font-size:12px;}
+.rg,.cg{display:flex;flex-direction:column;gap:9px;}
+.ro,.co{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;transition:all .2s;font-size:14px;color:var(--text);background:var(--surface);}
+.ro:hover,.co:hover{border-color:var(--violet-border);background:var(--violet-bg);color:var(--violet);}
+.ro input,.co input{margin-top:3px;accent-color:var(--violet);flex-shrink:0;}
+.fbdiv{border:none;border-top:1px solid var(--border);margin:30px 0;}
+.fbg textarea{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:14px 18px;font-family:"Plus Jakarta Sans",sans-serif;font-size:14px;color:var(--ink);min-height:100px;resize:vertical;outline:none;transition:border-color .2s;}
+.fbg textarea::placeholder{color:#C0C0D0;}
+.fbg textarea:focus{border-color:var(--violet-border);box-shadow:0 0 0 3px rgba(108,63,196,.08);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+@media(max-width:600px){
+  .rform,.fbform{padding:24px 18px;}
+  .chero{padding:34px 24px;}
+  .cnav{flex-direction:column;}.bfw{margin-left:0;}
+  .rsplit{flex-direction:column;align-items:center;}
+  .cal{flex-direction:column;}.ci{width:100%;padding:12px 17px 0;}
+  .ch1{letter-spacing:-1px;}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="cover-inner">
+    <div class="ctag"><span class="dot"></span>E-Book Interaktif</div>
+    <p class="ceyebrow">Studi Kasus Interaktif · Berbasis Hukum · Terapan</p>
+    <h1 class="ch1">Sistem Informasi<br>Pengawasan<br><span class="hl">Ketenagakerjaan</span></h1>
+    <p class="csub">Pengupahan Ketenagakerjaan</p>
+    <div class="cpills">
+      <span class="cpill cp1">🏛️ UU No. 6/2023</span><span class="cpill cp2">📋 PP No. 51/2023</span>
+      <span class="cpill cp3">🏙️ Kepgub DKI 1142/2025</span><span class="cpill cp4">✅ Upah Minimum</span>
+      <span class="cpill cp5">⚡ Golden Rule 75%</span><span class="cpill cp6">🎯 6 Bab Interaktif</span>
+    </div>
+    <div class="crefs"><p>Referensi Hukum</p>
+      <strong>PP No. 51 Tahun 2023 &nbsp;·&nbsp; UU No. 6 Tahun 2023<br>Kepgub DKI Jakarta No. 1142 Tahun 2025</strong>
+    </div>
+    <button class="btn-cta" onclick="showPage('reg-page')">Mulai Sekarang →</button>
+  </div>
+</section>
+
+<!-- NAV -->
+<div id="nav">
+  <div class="prog"><div class="pf" id="pf"></div></div>
+  <div class="ni">
+    <button class="nb" onclick="showPage('reg-page')">📋 Daftar</button>
+    <button class="nb" onclick="showPage('bab-a')">A · Fondasi</button>
+    <button class="nb" onclick="showPage('bab-b')">B · Upah Min.</button>
+    <button class="nb" onclick="showPage('bab-c')">C · Komponen</button>
+    <button class="nb" onclick="showPage('bab-d')">D · Hak &amp; Kwjb.</button>
+    <button class="nb" onclick="showPage('bab-e')">E · Administrasi</button>
+    <button class="nb" onclick="showPage('bab-f')">F · Kepatuhan</button>
+    <button class="nb" onclick="showPage('closing-page')">📌 Penutup</button>
+    <button class="nb" onclick="showPage('quiz-page')">🧠 Kuis</button>
+    <button class="nb" onclick="showPage('feedback-page')">💜 Feedback</button>
+  </div>
+</div>
+
+<!-- REGISTRATION -->
+<div id="reg-page" class="page"><div class="wrap">
+  <div class="rhero"><span class="em">📋</span><h2>Formulir Registrasi</h2><p>Lengkapi data di bawah ini sebelum memulai e-book</p></div>
+  <div class="rform">
+    <div class="rpriv">🔒 Data kamu aman — hanya untuk keperluan pembinaan</div>
+    <div class="fg"><label>Nama Lengkap</label><input type="text" id="rn" placeholder="Nama lengkap kamu"></div>
+    <div class="fg"><label>Perusahaan / Instansi</label><input type="text" id="rc" placeholder="Nama perusahaan atau instansi"></div>
+    <div class="fg"><label>Kontak <span class="opt">(email atau nomor telepon)</span></label><input type="text" id="rk" placeholder="email@contoh.com atau 08xx-xxxx-xxxx"></div>
+    <div class="fg"><label>Jabatan / Posisi <span class="opt">opsional</span></label><input type="text" id="rj" placeholder="Jabatan atau posisi kamu saat ini"></div>
+    <div class="sts" id="rSts"></div>
+    <button class="bsub" onclick="submitReg()">Selamat Belajar! ✨</button>
+  </div>
+</div></div>
+
+<!-- BAB A -->
+<div id="bab-a" class="page"><div class="wrap">
+  <div class="chero" data-L="A" style="--hc1:#6C3FC4;--hc2:#38CFFF;"><div class="hi">
+    <div class="cbadge">Bab A</div><h2>Fondasi Hukum</h2>
+    <div class="ctline">Biar Ga Buta Regulasi — Pahami Dulu Hierarkinya</div>
+  </div></div>
+  <p class="bt">Oke, sebelum masuk ke angka dan perhitungan, kita harus ngerti fondasi dulu. Aturan pengupahan itu bertingkat kayak RPG — ada level yang lebih tinggi, dan yang lebih rendah ga boleh konflik sama yang di atas.</p>
+  <div class="stitle">A.1 Hierarki Regulasi Pengupahan</div>
+  <p class="bt">Ini adalah 'tech stack'-nya hukum pengupahan di Indonesia. Pahami urutan ini dulu sebelum bisa ngerti aturan teknisnya:</p>
+  <div class="tw"><table><thead><tr><th>Regulasi</th><th>Isi Pokoknya</th></tr></thead><tbody>
+    <tr><td><strong>UU No. 13 Tahun 2003</strong></td><td>Fondasi hukum ketenagakerjaan: hak upah, larangan diskriminasi, kewajiban upah minimum</td></tr>
+    <tr><td><strong>UU No. 6 Tahun 2023 (Cipta Kerja)</strong></td><td>Update besar: formula upah minimum baru, struktur skala upah lebih tegas, perlindungan UMK</td></tr>
+    <tr><td><strong>PP No. 36 Tahun 2021</strong></td><td>Aturan teknis: formula UMP, komponen upah, kewajiban SSU, denda keterlambatan</td></tr>
+    <tr><td><strong>PP No. 51 Tahun 2023</strong></td><td>Formula UMP terbaru dengan variabel alpha (Indeks Tertentu) 0,10–0,30</td></tr>
+    <tr><td><strong>Permenaker No. 1/2017</strong></td><td>Kewajiban menyusun Struktur Skala Upah (SSU) bagi perusahaan 10+ pekerja</td></tr>
+    <tr><td><strong>Permenaker No. 6/2016</strong></td><td>THR Keagamaan: besaran, batas waktu, dan sanksi</td></tr>
+    <tr><td><strong>Kepgub DKI No. 1142/2025</strong></td><td>UMP DKI Jakarta 2026: Rp 5.729.876/bulan (naik ~6,17% dari 2025)</td></tr>
+  </tbody></table></div>
+  <div class="cal cs"><div class="ci">📌</div><div class="cb">
+    <p><strong>Catatan Khusus DKI Jakarta</strong></p>
+    <p>Jakarta ga punya UMK karena tidak ada kabupaten/kota otonom di dalamnya. Yang berlaku hanya <strong>UMP</strong> (untuk semua pekerja) dan <strong>UMSP</strong> (untuk sektor tertentu, nilainya harus di atas UMP).</p>
+    <p><strong>UMP DKI Jakarta 2026 = Rp 5.729.876/bulan</strong> (Kepgub DKI No. 1142 Tahun 2025)</p>
+  </div></div>
+  <div class="stitle">A.2 Golden Rule: Yang Lebih Menguntungkan Pekerja Selalu Menang</div>
+  <p class="bt">Kalau ada konflik antara dua aturan, selalu pakai yang lebih menguntungkan pekerja. Ini prinsip dasar yang sering bikin perusahaan kelabakan.</p>
+  <div class="cal cv"><div class="ci">💡</div><div class="cb">
+    <p>Perjanjian kerja yang isinya 'mengurangi hak pekerja' di bawah UU yang berlaku?</p>
+    <p><strong>→ Batal demi hukum. Otomatis. Tidak perlu proses pengadilan.</strong></p>
+    <p>Klausul kontrak yang bilang 'tidak berhak THR'? VOID — pekerja tetap berhak atas THR-nya.</p>
+  </div></div>
+  <div class="spill">
+    <div class="slabel">💬 Spill Your Thoughts</div>
+    <div class="stit">Bab A — Pendapat Kamu</div>
+    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="scard">
+      <div class="sbadge">🎭 The Scenario</div>
+      <div class="stext">
+        <p>POV: Kamu adalah HR Manager di sebuah startup Jakarta yang lagi grow up. Founder kamu bilang:</p>
+        <div class="squote">"Kita pakai Peraturan Perusahaan lama yang bikin sendiri ya, jangan ngikutin PP 51/2023 dulu — ribet. Toh kontrak karyawan sudah ditandatangan semua."</div>
+        <div class="sq">Menurut kamu: Apakah langkah founder tersebut dapat dibenarkan secara hukum? Apa yang idealnya dilakukan?</div>
+      </div>
+    </div>
+    <div class="dbox" id="db-a">
+      <label>✍️ Tuliskan Pendapat Kamu — Tidak Ada Jawaban Salah</label>
+      <textarea id="ta-a" placeholder="Tuliskan pendapat kamu di sini... (minimal 20 karakter untuk mengaktifkan tombol simpan)" oninput="handleTyping('ta-a','sb-a','ch-a')"></textarea>
+      <div class="char-hint" id="ch-a">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+    </div>
+    <div class="save-btn-wrap" id="sb-a">
+      <button class="btn-save" id="savebtn-a" onclick="saveSpill('a')">Simpan Jawaban Bab A →</button>
+    </div>
+    <div class="save-status" id="ss-a">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="reveal-wrap" id="rv-a">
+      <div class="rtalk">
+        <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
+        <div class="rtc">
+          <p><strong>Secara hukum, langkah tersebut tidak dapat dibenarkan.</strong></p>
+          <ul>
+            <li>PP No. 51/2023 adalah peraturan pemerintah yang bersifat mengikat — berlaku untuk semua perusahaan tanpa terkecuali.</li>
+            <li>Peraturan Perusahaan yang bertentangan dengan PP = <strong>batal demi hukum secara otomatis</strong>, tanpa perlu proses pengadilan.</li>
+            <li>Kontrak kerja yang sudah ditandatangani pun tidak bisa 'mengunci' kondisi yang bertentangan dengan ketentuan hukum yang berlaku.</li>
+          </ul>
+          <div class="rthl">Risiko: pelanggaran ini dapat berujung sanksi pidana (penjara 1–4 tahun dan/atau denda Rp 100–400 juta). Memahami risiko ini adalah langkah awal yang penting — baik bagi perusahaan maupun pekerja.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cnav"><button class="bfw" onclick="showPage('bab-b')">Bab B: Upah Minimum →</button></div>
+</div></div>
+
+<!-- BAB B -->
+<div id="bab-b" class="page"><div class="wrap">
+  <div class="chero" data-L="B" style="--hc1:#D94035;--hc2:#FF8C42;"><div class="hi">
+    <div class="cbadge">Bab B</div><h2>Jenis Upah Minimum</h2>
+    <div class="ctline">UMP, UMK, UMSP, UMSK — Jangan Sampai Ketuker</div>
+  </div></div>
+  <p class="bt">Upah minimum itu batas bawah (floor), bukan standar rata-rata. Kamu tidak boleh bayar di bawahnya — tapi kalau mau bayar di atas, silakan (bahkan dianjurkan!).</p>
+  <div class="stitle">B.1 Formula UMP Terbaru — PP No. 51 Tahun 2023</div>
+  <div class="fbox">
+    <div class="fm">UMP(n+1) = UMP(n) + [ UMP(n) × (Inflasi + Pertumbuhan Ekonomi × Alpha) ]</div>
+    <div class="fn">Alpha (Indeks Tertentu) = 0,10 s/d 0,30 · Berdasarkan tingkat pengangguran &amp; rasio upah terhadap konsumsi provinsi<br>Gubernur wajib umumkan maks. <strong>21 November</strong>, berlaku mulai <strong>1 Januari</strong> tahun berikutnya</div>
+  </div>
+  <div class="stitle">B.2 Peta Jenis Upah Minimum</div>
+  <div class="tw"><table><thead><tr><th>Jenis</th><th>Berlaku Untuk</th><th>Syarat Utama</th><th>Jakarta?</th></tr></thead><tbody>
+    <tr><td><strong>UMP</strong></td><td>Seluruh provinsi</td><td>Wajib ada, ditetapkan maks. 21 November</td><td>✅ Ada</td></tr>
+    <tr><td><strong>UMK</strong></td><td>Kabupaten/Kota tertentu</td><td>Opsional, nilai harus di atas UMP</td><td>❌ Tidak ada</td></tr>
+    <tr><td><strong>UMSP</strong></td><td>Sektor tertentu di provinsi</td><td>Nilai harus di atas UMP, atas kesepakatan sektoral</td><td>✅ Ada</td></tr>
+    <tr><td><strong>UMSK</strong></td><td>Sektor tertentu di kab/kota</td><td>Nilai harus di atas UMK, atas kesepakatan sektoral</td><td>❌ Tidak ada</td></tr>
+  </tbody></table></div>
+  <div class="stitle">B.3 Penangguhan &amp; Pengecualian</div>
+  <div class="cal cy"><div class="ci">⚠️</div><div class="cb">
+    <p><strong>Syarat Penangguhan UMP (jalur resmi, ketat):</strong></p>
+    <p>1. Laporan keuangan yang telah diaudit · 2. Kesepakatan tertulis dengan pekerja · 3. Disetujui Gubernur · 4. Berlaku maks. <strong>12 bulan</strong></p>
+  </div></div>
+  <div class="cal cl"><div class="ci">🏪</div><div class="cb">
+    <p><strong>Khusus Usaha Mikro &amp; Kecil:</strong> boleh menetapkan upah lebih rendah dari UMP — dengan syarat tidak lebih rendah dari 25% di atas garis kemiskinan provinsi, harus tertulis, dan jika berkembang melewati batas → otomatis berlaku UMP penuh.</p>
+  </div></div>
+  <div class="spill">
+    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab B — Pendapat Kamu</div>
+    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="scard">
+      <div class="sbadge">🎭 The Scenario</div>
+      <div class="stext">
+        <p>POV: Kamu pekerja baru di Jakarta, gaji take-home pay kamu Rp 6.200.000/bulan. Teman kamu bilang:</p>
+        <div class="squote">"Wah, gaji kamu sudah di atas UMP 2026 dong (Rp 5.729.876)? Berarti perusahaan kamu aman dan patuh hukum dong?"</div>
+        <div class="sq">Menurut kamu: Apakah pernyataan teman kamu itu 100% benar? Apa yang perlu dicek lebih lanjut?</div>
+      </div>
+    </div>
+    <div class="dbox" id="db-b">
+      <label>✍️ Tuliskan Pendapat Kamu</label>
+      <textarea id="ta-b" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-b','sb-b','ch-b')"></textarea>
+      <div class="char-hint" id="ch-b">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+    </div>
+    <div class="save-btn-wrap" id="sb-b"><button class="btn-save" id="savebtn-b" onclick="saveSpill('b')">Simpan Jawaban Bab B →</button></div>
+    <div class="save-status" id="ss-b">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="reveal-wrap" id="rv-b"><div class="rtalk">
+      <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
+      <div class="rtc">
+        <p><strong>Penting untuk dicermati lebih dalam. Take-home pay bukan satu-satunya ukuran kepatuhan UMP.</strong></p>
+        <ul>
+          <li>Yang dibandingkan dengan UMP bukan take-home pay, melainkan: <strong>Upah Pokok + Tunjangan Tetap saja.</strong></li>
+          <li>Kalau Rp 6,2jt itu termasuk uang makan + transport harian, maka yang dihitung sebagai 'upah' mungkin lebih kecil dari UMP.</li>
+          <li>Komponen non-tetap seperti uang makan per hari hadir <strong>TIDAK boleh</strong> dihitung sebagai pemenuhan UMP.</li>
+        </ul>
+        <div class="rthl">Cek slip gaji kamu: berapa Upah Pokok + Tunjangan Tetap-nya? Kalau kurang dari Rp 5.729.876 → ada masalah yang perlu ditindaklanjuti.</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="cnav"><button class="bbk" onclick="showPage('bab-a')">← Bab A</button><button class="bfw" onclick="showPage('bab-c')">Bab C →</button></div>
+</div></div>
+
+<!-- BAB C -->
+<div id="bab-c" class="page"><div class="wrap">
+  <div class="chero" data-L="C" style="--hc1:#077A52;--hc2:#0070CC;"><div class="hi">
+    <div class="cbadge">Bab C</div><h2>Komponen Upah</h2>
+    <div class="ctline">Anatomy of a Payslip — Jangan Sampai Salah Baca</div>
+  </div></div>
+  <p class="bt">Ini bab yang paling sering bikin masalah di lapangan. Banyak perusahaan yang secara teknis 'ngerasa' sudah bayar UMP, padahal secara hukum belum. Mari kita bedah tuntas.</p>
+  <div class="stitle">C.1 Tiga Struktur Komponen Upah</div>
+  <div class="tw"><table><thead><tr><th>Struktur</th><th>Komponen</th><th>Untuk Siapa</th></tr></thead><tbody>
+    <tr><td><strong>Sederhana</strong></td><td>Upah Pokok saja</td><td>Pekerja tanpa tunjangan</td></tr>
+    <tr><td><strong>Standar</strong></td><td>Upah Pokok + Tunjangan Tetap</td><td>Paling umum di perusahaan</td></tr>
+    <tr><td><strong>Lengkap</strong></td><td>Upah Pokok + Tunjangan Tetap + Tunjangan Tidak Tetap</td><td>Umum di perusahaan menengah &amp; besar</td></tr>
+  </tbody></table></div>
+  <div class="stitle">C.2 ⚡ Golden Rule 75%</div>
+  <div class="grule">
+    <h3>🚨 ATURAN 75% — WAJIB PATUHI 🚨</h3>
+    <div class="rmain">Upah Pokok ≥ 75% dari (Upah Pokok + Tunjangan Tetap)</div>
+    <p style="font-size:13px;color:var(--gray);margin-bottom:16px;">Contoh: Upah Pokok + Tunjangan Tetap = <strong style="color:var(--ink)">Rp 6.000.000</strong> (di atas UMP DKI 2026)</p>
+    <div class="rsplit"><div class="ri mn">Upah Pokok MINIMAL<br><strong>Rp 4.500.000</strong> (75%)</div><div class="ri mx">Tunjangan Tetap MAKSIMAL<br><strong>Rp 1.500.000</strong> (25%)</div></div>
+    <p class="rnote">⚠️ Total Upah Pokok + Tunjangan Tetap harus tetap ≥ UMP DKI 2026 (Rp 5.729.876)</p>
+    <div class="rwarn">Melanggar ini = struktur upah perusahaan TIDAK SAH secara hukum</div>
+  </div>
+  <div class="stitle">C.3 Breakdown Tiap Komponen</div>
+  <div class="cal cm"><div class="ci">✅</div><div class="cb"><p><strong>Tunjangan Tetap</strong> — Dibayarkan teratur, TIDAK dikaitkan dengan kehadiran.</p><p>Contoh: Tunjangan jabatan · Tunjangan keluarga · Tunjangan perumahan · Tunjangan kemahalan</p></div></div>
+  <div class="cal cy"><div class="ci">❌</div><div class="cb"><p><strong>Tunjangan Tidak Tetap</strong> — Dikaitkan dengan kehadiran. <strong>TIDAK masuk hitungan UMP.</strong></p><p>Contoh: Uang makan per hari hadir · Uang transport per hari hadir · Premi kehadiran</p></div></div>
+  <div class="stitle">C.4 Master Table: Komponen Upah vs. Keperluan Perhitungan</div>
+  <div class="tw"><table><thead><tr><th>Keperluan Perhitungan</th><th>Yang Dipakai Sebagai Dasar</th></tr></thead><tbody>
+    <tr><td>Perbandingan dengan UMP/UMK</td><td><strong style="color:var(--mint)">Upah Pokok + Tunjangan Tetap SAJA</strong></td></tr>
+    <tr><td>Upah Lembur</td><td>Upah Pokok + Tunjangan Tetap (atau 75% total upah jika tidak ada pemisahan)</td></tr>
+    <tr><td>Iuran BPJS Ketenagakerjaan</td><td>Upah Pokok + Tunjangan Tetap</td></tr>
+    <tr><td>Iuran BPJS Kesehatan</td><td>Upah Pokok + Tunjangan Tetap</td></tr>
+    <tr><td>Pesangon &amp; Uang Penghargaan Masa Kerja</td><td>Upah Pokok + Tunjangan Tetap</td></tr>
+    <tr><td>PPh Pasal 21</td><td><strong style="color:var(--coral)">SEMUA penghasilan bruto</strong> (pokok + semua tunjangan + bonus + THR)</td></tr>
+  </tbody></table></div>
+  <div class="rf"><div class="rft">🚨 RED FLAG — Kesalahan Paling Umum di Lapangan</div><p style="font-size:14px;color:var(--text);line-height:1.8;">Banyak perusahaan menjumlahkan SEMUA komponen (termasuk uang makan + transport) untuk 'membuktikan' sudah di atas UMP. Ini <strong>TIDAK SAH</strong> secara hukum. Yang dibandingkan dengan UMP: <strong>Upah Pokok + Tunjangan Tetap SAJA.</strong></p></div>
+  <div class="stitle">C.5 Ilustrasi Slip Gaji yang Benar</div>
+  <div class="slip">
+    <div class="sliph">📄 Slip Gaji — Periode Januari 2026</div>
+    <div class="ssec">PENDAPATAN</div>
+    <div class="srow"><span>Upah Pokok</span><span>Rp 5.200.000</span></div>
+    <div class="srow"><span>Tunjangan Jabatan (Tetap)</span><span>Rp 529.876</span></div>
+    <div class="srow hl"><span>→ Subtotal dasar upah vs UMP ✅</span><span>Rp 5.729.876</span></div>
+    <div class="srow"><span>Uang Makan (Tidak Tetap)</span><span>Rp 600.000</span></div>
+    <div class="srow"><span>Uang Transport (Tidak Tetap)</span><span>Rp 400.000</span></div>
+    <div class="srow" style="font-weight:700;"><span>TOTAL PENDAPATAN BRUTO</span><span>Rp 6.729.876</span></div>
+    <div class="ssec">POTONGAN</div>
+    <div class="srow ded"><span>Iuran BPJS Kesehatan (1% dari Rp 5.729.876)</span><span>- Rp 57.299</span></div>
+    <div class="srow ded"><span>Iuran BPJS TK-JHT (2% dari Rp 5.729.876)</span><span>- Rp 114.598</span></div>
+    <div class="srow ded"><span>Iuran BPJS TK-JP (1% dari Rp 5.729.876)</span><span>- Rp 57.299</span></div>
+    <div class="srow ded"><span>PPh Pasal 21 (estimasi)</span><span>- Rp 80.000</span></div>
+    <div class="srow tot"><span>UPAH BERSIH (TAKE-HOME PAY)</span><span>Rp 6.420.680</span></div>
+    <div class="snote">* BPJS dihitung dari Upah Pokok + Tunjangan Tetap (Rp 5.729.876). Uang Makan &amp; Transport tidak masuk dasar perbandingan UMP.</div>
+  </div>
+  <div class="spill">
+    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab C — Pendapat Kamu</div>
+    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="scard">
+      <div class="sbadge">🎭 The Scenario</div>
+      <div class="stext">
+        <p>POV: Kamu HR yang baru join. Kamu nemu slip gaji: Upah Pokok Rp 3.000.000 · Tunjangan Jabatan Rp 1.000.000 · Uang Makan Rp 800.000 · Transport Rp 700.000 · Bonus Kehadiran Rp 500.000 → Total Rp 6.000.000.</p>
+        <div class="squote">Atasan kamu bilang: "Total gaji Rp 6 juta, sudah jauh di atas UMP Rp 5,7 jutaan — aman!"</div>
+        <div class="sq">Menurut kamu: Apakah klaim atasan kamu valid? Apa yang perlu kamu luruskan?</div>
+      </div>
+    </div>
+    <div class="dbox" id="db-c">
+      <label>✍️ Tuliskan Pendapat Kamu</label>
+      <textarea id="ta-c" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-c','sb-c','ch-c')"></textarea>
+      <div class="char-hint" id="ch-c">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+    </div>
+    <div class="save-btn-wrap" id="sb-c"><button class="btn-save" id="savebtn-c" onclick="saveSpill('c')">Simpan Jawaban Bab C →</button></div>
+    <div class="save-status" id="ss-c">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="reveal-wrap" id="rv-c"><div class="rtalk">
+      <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
+      <div class="rtc">
+        <p><strong>Klaim atasan kamu: SALAH BESAR. Ada dua masalah sekaligus.</strong></p>
+        <p><strong>Masalah 1 — Pelanggaran UMP:</strong> Yang sah dibandingkan UMP: Rp 3 jt + Rp 1 jt = <strong>Rp 4.000.000 &lt; UMP DKI 2026 (Rp 5.729.876) → PELANGGARAN UMP.</strong></p>
+        <p><strong>Masalah 2 — Pelanggaran Aturan 75%:</strong> Upah Pokok = Rp 3 jt dari total tetap Rp 4 jt = 75% — tepat di batas minimum.</p>
+        <div class="rthl">Rekomendasi: Upah Pokok dan Tunjangan Tetap harus dinaikkan agar total keduanya minimal Rp 5.729.876 sambil mempertahankan rasio 75% Upah Pokok.</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="cnav"><button class="bbk" onclick="showPage('bab-b')">← Bab B</button><button class="bfw" onclick="showPage('bab-d')">Bab D →</button></div>
+</div></div>
+
+<!-- BAB D -->
+<div id="bab-d" class="page"><div class="wrap">
+  <div class="chero" data-L="D" style="--hc1:#A86A00;--hc2:#D94035;"><div class="hi">
+    <div class="cbadge">Bab D</div><h2>Hak &amp; Kewajiban</h2>
+    <div class="ctline">Rights &amp; Responsibilities — Know Yours, Know Theirs</div>
+  </div></div>
+  <p class="bt">Hubungan kerja itu dua arah. Perusahaan punya hak dan kewajiban, pekerja juga punya hak dan kewajiban. Pahami keduanya supaya kamu bisa advocate untuk diri sendiri — atau team kamu.</p>
+  <div class="stitle">D.1 Kewajiban Perusahaan</div>
+  <div class="cal cm"><div class="ci">✅</div><div class="cb">
+    <p><strong>Bayar upah minimum</strong> — mutlak, tidak ada pengecualian tanpa penangguhan resmi</p>
+    <p><strong>Bayar upah tepat waktu</strong> · <strong>Berikan slip gaji</strong> setiap periode (wajib, bukan opsional)</p>
+    <p><strong>Bayar THR</strong> — paling lambat 7 hari sebelum hari raya keagamaan pekerja</p>
+    <p><strong>Bayar saat pekerja tidak hadir</strong> karena alasan yang dilindungi UU (sakit, melahirkan, cuti, dll.)</p>
+    <p><strong>Daftarkan ke BPJS &amp; setor iuran</strong> — wajib untuk seluruh pekerja tanpa terkecuali</p>
+  </div></div>
+  <div class="stitle">D.2 Hak Pekerja</div>
+  <div class="cal cs"><div class="ci">⚖️</div><div class="cb">
+    <p><strong>Terima upah sesuai perjanjian, tidak di bawah UMP/UMK</strong></p>
+    <p><strong>Terima THR sesuai hari raya agamanya sendiri</strong> — bukan agama mayoritas perusahaan</p>
+    <p><strong>Dapat slip gaji yang transparan</strong> · <strong>Akses ke PKB atau Peraturan Perusahaan</strong></p>
+  </div></div>
+  <div class="stitle">D.3 Mekanisme Penetapan Upah di Atas UMP</div>
+  <div class="tw"><table><thead><tr><th>Mekanisme</th><th>Siapa Yang Terlibat</th><th>Berlaku</th><th>Wajib Jika...</th></tr></thead><tbody>
+    <tr><td><strong>PKB</strong></td><td>Manajemen + Serikat Pekerja terdaftar</td><td>2 tahun, bisa diperpanjang</td><td>Ada serikat pekerja</td></tr>
+    <tr><td><strong>PP (Peraturan Perusahaan)</strong></td><td>Pengusaha + konsultasi wakil pekerja</td><td>2 tahun, wajib disahkan Disnaker</td><td>10+ pekerja, tidak ada SP</td></tr>
+    <tr><td><strong>PKWT/PKWTT</strong></td><td>Perusahaan + Pekerja individual</td><td>Sesuai isi kontrak</td><td>Semua pekerja</td></tr>
+  </tbody></table></div>
+  <div class="stitle">D.4 Tentang THR</div>
+  <div class="cal co"><div class="ci">🎁</div><div class="cb">
+    <p>THR adalah <strong>HAK</strong> — bukan gift dari perusahaan. Berlaku untuk <strong>semua pekerja</strong> (tetap maupun PKWT).</p>
+    <p>Dasarnya: <strong>Upah Pokok + Tunjangan Tetap</strong> — bukan total take-home pay. Tidak bayar THR = bisa dilaporkan ke Disnaker.</p>
+  </div></div>
+  <div class="spill">
+    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab D — Pendapat Kamu</div>
+    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="scard">
+      <div class="sbadge">🎭 The Scenario</div>
+      <div class="stext">
+        <p>POV: Kamu baru jadi HR Supervisor. Di kontrak Dito ada klausul:</p>
+        <div class="squote">"Seluruh kompensasi termasuk tunjangan dan benefit sudah tercakup dalam gaji pokok. Tidak ada benefit tambahan di luar yang tertulis di kontrak ini."</div>
+        <p>Setahun kemudian, Dito menagih THR-nya. Finance bilang: "Kontrak kamu tidak menyebut THR, jadi tidak ada THR."</p>
+        <div class="sq">Menurut kamu: Bagaimana posisi hukum Dito? Apa yang idealnya diperhatikan sejak awal?</div>
+      </div>
+    </div>
+    <div class="dbox" id="db-d">
+      <label>✍️ Tuliskan Pendapat Kamu</label>
+      <textarea id="ta-d" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-d','sb-d','ch-d')"></textarea>
+      <div class="char-hint" id="ch-d">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+    </div>
+    <div class="save-btn-wrap" id="sb-d"><button class="btn-save" id="savebtn-d" onclick="saveSpill('d')">Simpan Jawaban Bab D →</button></div>
+    <div class="save-status" id="ss-d">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="reveal-wrap" id="rv-d"><div class="rtalk">
+      <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
+      <div class="rtc">
+        <p><strong>Secara hukum, klausul kontrak tersebut tidak dapat menghapus hak THR pekerja.</strong></p>
+        <ul>
+          <li>THR adalah hak yang dijamin UU — tidak bisa dihapus lewat kontrak kerja, seberapapun jelasnya klausul tersebut.</li>
+          <li>Klausul yang 'memotong' hak pekerja di bawah UU = <strong>batal demi hukum secara otomatis.</strong></li>
+        </ul>
+        <div class="rthl">Bottom line: Kontrak kerja tidak bisa lebih rendah dari floor yang sudah ditetapkan undang-undang. Kalau ada konflik, UU selalu menang.</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="cnav"><button class="bbk" onclick="showPage('bab-c')">← Bab C</button><button class="bfw" onclick="showPage('bab-e')">Bab E →</button></div>
+</div></div>
+
+<!-- BAB E -->
+<div id="bab-e" class="page"><div class="wrap">
+  <div class="chero" data-L="E" style="--hc1:#0070CC;--hc2:#6C3FC4;"><div class="hi">
+    <div class="cbadge">Bab E</div><h2>Administrasi Pengupahan</h2>
+    <div class="ctline">Paper Trail is Your Best Friend — Jangan Remehkan Dokumen</div>
+  </div></div>
+  <p class="bt">Administrasi pengupahan yang tertib adalah syarat utama kepatuhan hukum dan bukti terkuat saat terjadi sengketa atau inspeksi. Satu dokumen yang kurang = teguran tertulis yang menyebalkan.</p>
+  <div class="stitle">E.1 Struktur &amp; Skala Upah (SSU) — Wajib Kalau 10+ Pekerja</div>
+  <div class="cal cv"><div class="ci">💡</div><div class="cb">
+    <p><strong>Kenapa SSU Penting?</strong></p>
+    <p>• Kepastian hukum: upah yang dibayarkan terdokumentasi dan bisa dipertanggungjawabkan</p>
+    <p>• Mencegah diskriminasi upah antar pekerja dengan jabatan setara</p>
+    <p>• Jadi acuan sah saat perundingan PKB, kenaikan upah, atau sengketa PHI</p>
+    <p>• Wajib dilaporkan ke Disnaker — tidak melapor = pelanggaran administratif</p>
+  </div></div>
+  <div class="stitle">E.2 Ilustrasi Struktur Grade (DKI Jakarta 2026)</div>
+  <div class="tw"><table><thead><tr><th>Grade</th><th>Jabatan Contoh</th><th>Upah Minimum</th><th>Midpoint</th><th>Maksimum</th></tr></thead><tbody>
+    <tr><td><strong>Grade 1</strong></td><td>Staff Junior</td><td>Rp 5.729.876</td><td>Rp 6.500.000</td><td>Rp 7.200.000</td></tr>
+    <tr><td><strong>Grade 2</strong></td><td>Staff Senior</td><td>Rp 6.500.000</td><td>Rp 7.800.000</td><td>Rp 9.000.000</td></tr>
+    <tr><td><strong>Grade 3</strong></td><td>Supervisor</td><td>Rp 8.500.000</td><td>Rp 10.000.000</td><td>Rp 12.000.000</td></tr>
+    <tr><td><strong>Grade 4</strong></td><td>Manager</td><td>Rp 12.000.000</td><td>Rp 15.000.000</td><td>Rp 18.000.000</td></tr>
+  </tbody></table></div>
+  <div class="stitle">E.3 Iuran BPJS — Tabel Lengkap</div>
+  <div class="tw"><table><thead><tr><th>Program</th><th>Perusahaan</th><th>Pekerja</th><th>Batas Setor</th></tr></thead><tbody>
+    <tr><td>JKK (Kecelakaan Kerja)</td><td>0,24%–1,74%</td><td>0%</td><td>Tgl 15</td></tr>
+    <tr><td>JKM (Kematian)</td><td>0,30%</td><td>0%</td><td>Tgl 15</td></tr>
+    <tr><td>JHT (Hari Tua)</td><td>3,70%</td><td>2,00%</td><td>Tgl 15</td></tr>
+    <tr><td>JP (Pensiun)</td><td>2,00%</td><td>1,00%</td><td>Tgl 15</td></tr>
+    <tr><td>BPJS Kesehatan</td><td>4%</td><td>1%</td><td>Tgl 10</td></tr>
+  </tbody></table></div>
+  <div class="cal cc"><div class="ci">🚨</div><div class="cb"><p><strong>Potong iuran BPJS dari upah tapi TIDAK setor ke BPJS = PENGGELAPAN.</strong> Bisa kena KUHP 374 — bukan sekadar pelanggaran administratif!</p></div></div>
+  <div class="spill">
+    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab E — Pendapat Kamu</div>
+    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="scard">
+      <div class="sbadge">🎭 The Scenario</div>
+      <div class="stext">
+        <p>POV: Kamu adalah owner UMKM dengan 15 karyawan di Jakarta. Kamu baru sadar belum pernah buat SSU sejak berdiri 3 tahun lalu.</p>
+        <div class="squote">Teman kamu bilang: "Ah, SSU itu cuma buat perusahaan besar. Kamu mah UMKM, santai aja."</div>
+        <div class="sq">Menurut kamu: Apakah teman kamu benar? Apa yang sebaiknya kamu lakukan sekarang?</div>
+      </div>
+    </div>
+    <div class="dbox" id="db-e">
+      <label>✍️ Tuliskan Pendapat Kamu</label>
+      <textarea id="ta-e" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-e','sb-e','ch-e')"></textarea>
+      <div class="char-hint" id="ch-e">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+    </div>
+    <div class="save-btn-wrap" id="sb-e"><button class="btn-save" id="savebtn-e" onclick="saveSpill('e')">Simpan Jawaban Bab E →</button></div>
+    <div class="save-status" id="ss-e">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="reveal-wrap" id="rv-e"><div class="rtalk">
+      <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
+      <div class="rtc">
+        <p><strong>Perlu diluruskan: ukurannya bukan skala besar atau kecil — melainkan jumlah pekerja.</strong></p>
+        <ul>
+          <li>Permenaker No. 1/2017: WAJIB SSU untuk perusahaan dengan <strong>10 atau lebih pekerja</strong> — tanpa pengecualian berdasarkan skala usaha.</li>
+          <li>Perusahaan dengan 15 karyawan → WAJIB memiliki SSU. Jika belum ada, ini perlu segera diprioritaskan.</li>
+          <li>Tidak punya SSU = pelanggaran administratif yang bisa berujung teguran tertulis dari Disnaker.</li>
+        </ul>
+        <div class="rthl">Action plan: Segera susun SSU (bisa mulai dari struktur grade sederhana), sosialisasikan ke karyawan, dan laporkan ke Disnaker.</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="cnav"><button class="bbk" onclick="showPage('bab-d')">← Bab D</button><button class="bfw" onclick="showPage('bab-f')">Bab F →</button></div>
+</div></div>
+
+<!-- BAB F -->
+<div id="bab-f" class="page"><div class="wrap">
+  <div class="chero" data-L="F" style="--hc1:#D94035;--hc2:#6C3FC4;"><div class="hi">
+    <div class="cbadge">Bab F</div><h2>Kepatuhan &amp; Sanksi</h2>
+    <div class="ctline">Consequences Are Real — Jangan Anggap Remeh</div>
+  </div></div>
+  <p class="bt">Kepatuhan pengupahan bukan hanya kewajiban hukum — ini bentuk perlindungan bagi perusahaan itu sendiri. Pelanggaran sekecil apapun bisa berujung sengketa, reputasi rusak, bahkan pidana.</p>
+  <div class="stitle">F.1 Red Flag Checklist</div>
+  <div class="rf"><div class="rft">🚨 Kategori A: Pelanggaran Upah Minimum</div><ul>
+    <li>🚩 Bayar di bawah UMP/UMK tanpa penangguhan resmi — langsung bisa dituntut pidana</li>
+    <li>🚩 Hitung tunjangan tidak tetap (makan, transport) sebagai pemenuhan UMP — tidak sah</li>
+    <li>🚩 Tidak update upah setelah UMP naik per 1 Januari — pelanggaran pasif yang sering tidak disadari</li>
+  </ul></div>
+  <div class="rf"><div class="rft">🚨 Kategori B: Pelanggaran Komponen Upah</div><ul>
+    <li>🚩 Upah pokok di bawah 75% dari total upah tetap — struktur upah tidak sah</li>
+    <li>🚩 Hitung lembur dengan dasar yang salah (hanya upah pokok, tanpa tunjangan tetap)</li>
+    <li>🚩 Tidak membayar lembur sama sekali, atau bayar flat tanpa hitungan per jam</li>
+  </ul></div>
+  <div class="rf"><div class="rft">🚨 Kategori C: Pelanggaran THR</div><ul>
+    <li>🚩 Tidak bayar THR — sanksi: denda 5% + kewajiban bayar THR penuh</li>
+    <li>🚩 Bayar THR berdasarkan upah pokok saja — harusnya pokok + tunjangan tetap</li>
+    <li>🚩 Tidak memperhatikan hari raya masing-masing agama pekerja</li>
+  </ul></div>
+  <div class="rf"><div class="rft">🚨 Kategori D: Pelanggaran BPJS &amp; Administrasi</div><ul>
+    <li>🚩🚩 Potong iuran BPJS dari upah tapi TIDAK setor ke BPJS — PENGGELAPAN (KUHP 374)!</li>
+    <li>🚩 Tidak daftarkan pekerja ke BPJS — sanksi: tidak dapat layanan publik tertentu</li>
+    <li>🚩 Tidak punya buku upah, tidak buat slip gaji, tidak punya SSU (10+ pekerja)</li>
+  </ul></div>
+  <div class="stitle">F.2 Konsekuensi Hukum</div>
+  <div class="tw"><table><thead><tr><th>Pelanggaran</th><th>Ancaman Penjara</th><th>Ancaman Denda</th></tr></thead><tbody>
+    <tr><td>Bayar upah di bawah UMP/UMK</td><td><span style="color:var(--coral);font-weight:700;">1–4 tahun</span></td><td><span style="color:var(--coral);font-weight:700;">Rp 100–400 juta</span></td></tr>
+    <tr><td>Tidak bayar upah lembur</td><td><span style="color:var(--coral);font-weight:700;">1–4 tahun</span></td><td><span style="color:var(--coral);font-weight:700;">Rp 100–400 juta</span></td></tr>
+    <tr><td>Gelapkan iuran BPJS</td><td>KUHP 374 (penggelapan jabatan)</td><td>Sesuai putusan hakim</td></tr>
+    <tr><td>Diskriminasi upah</td><td><span style="color:var(--coral);font-weight:700;">1–4 tahun</span></td><td><span style="color:var(--coral);font-weight:700;">Rp 100–400 juta</span></td></tr>
+  </tbody></table></div>
+  <div class="spill">
+    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab F — Final Boss Scenario</div>
+    <div class="ssub2">Yang paling kompleks. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="scard">
+      <div class="sbadge">🎭 The Scenario</div>
+      <div class="stext">
+        <p>POV: Kamu HR Manager di perusahaan yang baru kena inspeksi Disnaker. Inspektur menemukan:</p>
+        <ul style="margin:12px 0 12px 18px;line-height:1.9;font-size:14px;">
+          <li>Upah pokok 3 karyawan junior = Rp 4.500.000 (padahal UMP 2026 = Rp 5.729.876)</li>
+          <li>Perusahaan berdalih total take-home pay = Rp 6.500.000 (termasuk uang makan dan transport)</li>
+          <li>Perusahaan belum punya SSU meski sudah 25 karyawan</li>
+        </ul>
+        <div class="sq">Menurut kamu: Ada berapa poin yang perlu ditindaklanjuti? Mana yang paling mendesak?</div>
+      </div>
+    </div>
+    <div class="dbox" id="db-f">
+      <label>✍️ Tuliskan Pendapat Kamu</label>
+      <textarea id="ta-f" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-f','sb-f','ch-f')"></textarea>
+      <div class="char-hint" id="ch-f">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+    </div>
+    <div class="save-btn-wrap" id="sb-f"><button class="btn-save" id="savebtn-f" onclick="saveSpill('f')">Simpan Jawaban Bab F →</button></div>
+    <div class="save-status" id="ss-f">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="reveal-wrap" id="rv-f"><div class="rtalk">
+      <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
+      <div class="rtc">
+        <p><strong>Ada setidaknya 3 poin yang perlu segera ditindaklanjuti:</strong></p>
+        <ul>
+          <li><strong>Pelanggaran 1 — Upah di bawah UMP:</strong> Rp 4.500.000 &lt; UMP 2026 Rp 5.729.876. Uang makan/transport tidak bisa dihitung. Bisa berujung pidana.</li>
+          <li><strong>Pelanggaran 2 — Aturan 75%:</strong> Perlu dicek apakah rasio 75% Upah Pokok dari total tetap terpenuhi.</li>
+          <li><strong>Pelanggaran 3 — Tidak punya SSU:</strong> 25 karyawan = wajib SSU. Pelanggaran administratif tersendiri.</li>
+        </ul>
+        <div class="rthl">Prioritas HR: (1) Segera bayar kekurangan upah, (2) Susun SSU secepatnya, (3) Dokumentasikan semua langkah perbaikan sebagai itikad baik kepada Disnaker.</div>
+      </div>
+    </div></div>
+  </div>
+  <div class="cnav"><button class="bbk" onclick="showPage('bab-e')">← Bab E</button><button class="bfw" onclick="showPage('closing-page')">Penutup →</button></div>
+</div></div>
+
+<!-- CLOSING -->
+<div id="closing-page" class="page"><div class="wrap">
+  <div class="clhero"><span class="em">🎉</span><h2>You Made It to the End!</h2><p>Sekarang kamu sudah memiliki bekal yang cukup untuk memahami dunia pengupahan ketenagakerjaan dengan lebih percaya diri.</p></div>
+  <div class="tldr">
+    <h3>⚡ TL;DR — Quick Recap</h3>
+    <div class="titem"><div class="tdot">1</div><p><strong>UMP DKI 2026 = Rp 5.729.876</strong> (Kepgub DKI No. 1142/2025) — batas minimum, bukan standar.</p></div>
+    <div class="titem"><div class="tdot">2</div><p>Yang dibandingkan UMP: <strong>Upah Pokok + Tunjangan Tetap SAJA</strong> — bukan total take-home pay.</p></div>
+    <div class="titem"><div class="tdot">3</div><p><strong>Golden Rule 75%:</strong> Upah Pokok ≥ 75% dari (Pokok + Tunjangan Tetap) — wajib, no exception.</p></div>
+    <div class="titem"><div class="tdot">4</div><p>Lembur dihitung dari <strong>Upah Pokok + Tunjangan Tetap</strong> — tidak bisa 'sudah included' tanpa dasar hitungan.</p></div>
+    <div class="titem"><div class="tdot">5</div><p>THR untuk <strong>SEMUA pekerja</strong> (tetap maupun kontrak) — bayar maksimal 7 hari sebelum hari raya.</p></div>
+    <div class="titem"><div class="tdot">6</div><p>BPJS: potong tapi tidak setor = penggelapan. <strong>Daftar dan setor tepat waktu, selalu.</strong></p></div>
+    <div class="titem"><div class="tdot">7</div><p><strong>10+ pekerja</strong> → wajib SSU, PP, buku upah, slip gaji. Semuanya.</p></div>
+  </div>
+  <div class="refs">
+    <strong style="color:var(--ink)">Referensi Utama</strong><br>
+    PP No. 51 Tahun 2023 &nbsp;·&nbsp; UU No. 6 Tahun 2023 &nbsp;·&nbsp; PP No. 36 Tahun 2021<br>
+    Kepgub DKI Jakarta No. 1142 Tahun 2025 &nbsp;·&nbsp; Permenaker No. 1/2017 &nbsp;·&nbsp; Permenaker No. 6/2016<br><br>
+    <em>⚡ Selalu rujuk peraturan terbaru yang berlaku untuk keputusan hukum spesifik ⚡</em>
+  </div>
+  <div class="cnav"><button class="bbk" onclick="showPage('bab-f')">← Bab F</button><button class="bfw" onclick="showPage('quiz-page')">Lanjut ke Kuis 🧠 →</button></div>
+</div></div>
+
+<!-- QUIZ -->
+<div id="quiz-page" class="page"><div class="wrap">
+  <div class="qhero"><h2>🧠 Kuis Pilihan Ganda</h2><p>Vibe Check — Sudah Nyerap Berapa Persen?</p></div>
+  <div class="qcard"><div class="qnum">Soal 01 / 05</div><div class="qtext">Apa yang dimaksud dengan upah minimum?</div>
+    <div class="opts">
+      <button class="obt" onclick="ansQ(this,0,2,'e1')"><span class="oltr">A</span>Rata-rata gaji pekerja di suatu daerah</button>
+      <button class="obt" onclick="ansQ(this,1,2,'e1')"><span class="oltr">B</span>Batas maksimum gaji pekerja</button>
+      <button class="obt" onclick="ansQ(this,2,2,'e1')"><span class="oltr">C</span>Batas paling rendah yang wajib dibayarkan perusahaan</button>
+      <button class="obt" onclick="ansQ(this,3,2,'e1')"><span class="oltr">D</span>Standar gaji perusahaan besar</button>
+    </div><div class="aexp" id="e1">✅ Jawaban: C — Upah minimum adalah floor/batas bawah. Perusahaan wajib bayar minimal ini. Bukan rata-rata, bukan maksimum.</div>
+  </div>
+  <div class="qcard"><div class="qnum">Soal 02 / 05</div><div class="qtext">Komponen apa yang digunakan untuk membandingkan dengan UMP?</div>
+    <div class="opts">
+      <button class="obt" onclick="ansQ(this,0,2,'e2')"><span class="oltr">A</span>Total take-home pay</button>
+      <button class="obt" onclick="ansQ(this,1,2,'e2')"><span class="oltr">B</span>Upah pokok + semua tunjangan</button>
+      <button class="obt" onclick="ansQ(this,2,2,'e2')"><span class="oltr">C</span>Upah pokok + tunjangan tetap</button>
+      <button class="obt" onclick="ansQ(this,3,2,'e2')"><span class="oltr">D</span>Upah pokok saja</button>
+    </div><div class="aexp" id="e2">✅ Jawaban: C — Hanya Upah Pokok + Tunjangan Tetap yang dibandingkan dengan UMP. Tunjangan tidak tetap tidak masuk hitungan.</div>
+  </div>
+  <div class="qcard"><div class="qnum">Soal 03 / 05</div><div class="qtext">Manakah yang termasuk tunjangan tidak tetap?</div>
+    <div class="opts">
+      <button class="obt" onclick="ansQ(this,0,2,'e3')"><span class="oltr">A</span>Tunjangan jabatan</button>
+      <button class="obt" onclick="ansQ(this,1,2,'e3')"><span class="oltr">B</span>Tunjangan keluarga</button>
+      <button class="obt" onclick="ansQ(this,2,2,'e3')"><span class="oltr">C</span>Uang makan harian</button>
+      <button class="obt" onclick="ansQ(this,3,2,'e3')"><span class="oltr">D</span>Tunjangan perumahan</button>
+    </div><div class="aexp" id="e3">✅ Jawaban: C — Uang makan harian dikaitkan dengan kehadiran. Kalau tidak masuk kerja, tidak dapat uang makan.</div>
+  </div>
+  <div class="qcard"><div class="qnum">Soal 04 / 05</div><div class="qtext">Jika upah pokok + tunjangan tetap lebih rendah dari UMP, maka:</div>
+    <div class="opts">
+      <button class="obt" onclick="ansQ(this,0,2,'e4')"><span class="oltr">A</span>Tetap diperbolehkan jika ada bonus</button>
+      <button class="obt" onclick="ansQ(this,1,2,'e4')"><span class="oltr">B</span>Tetap sah jika take-home pay tinggi</button>
+      <button class="obt" onclick="ansQ(this,2,2,'e4')"><span class="oltr">C</span>Tidak memenuhi ketentuan upah minimum</button>
+      <button class="obt" onclick="ansQ(this,3,2,'e4')"><span class="oltr">D</span>Diperbolehkan jika pekerja setuju</button>
+    </div><div class="aexp" id="e4">✅ Jawaban: C — Tidak ada bonus, take-home pay tinggi, atau kesepakatan yang bisa meng-override kewajiban UMP. Ini mutlak.</div>
+  </div>
+  <div class="qcard"><div class="qnum">Soal 05 / 05</div><div class="qtext">Berapa minimal persentase upah pokok dari total upah tetap?</div>
+    <div class="opts">
+      <button class="obt" onclick="ansQ(this,0,2,'e5')"><span class="oltr">A</span>50%</button>
+      <button class="obt" onclick="ansQ(this,1,2,'e5')"><span class="oltr">B</span>60%</button>
+      <button class="obt" onclick="ansQ(this,2,2,'e5')"><span class="oltr">C</span>75%</button>
+      <button class="obt" onclick="ansQ(this,3,2,'e5')"><span class="oltr">D</span>80%</button>
+    </div><div class="aexp" id="e5">✅ Jawaban: C — Golden Rule 75%: Upah Pokok minimal 75% dari (Upah Pokok + Tunjangan Tetap). Berdasarkan PP No. 36/2021.</div>
+  </div>
+  <div class="scard2" id="scoreCard">
+    <div class="sbig"><span id="snum">0</span>/5</div>
+    <div class="ssub3">soal dijawab dengan benar</div>
+    <div class="smsg" id="smsg"></div>
+  </div>
+  <div class="cnav"><button class="bbk" onclick="showPage('closing-page')">← Penutup</button><button class="bfw" onclick="showPage('feedback-page')">Isi Feedback 💜 →</button></div>
+</div></div>
+
+<!-- FEEDBACK -->
+<div id="feedback-page" class="page"><div class="wrap">
+  <div class="fbhero"><h2>📝 Formulir Feedback</h2><p>Pendapat kamu sangat berarti bagi kami. Sampaikan secara jujur — tidak ada yang dinilai di sini.</p></div>
+  <div class="fbform" id="fbWrap">
+    <div class="rpriv" style="margin-bottom:24px;">Score kuis kamu otomatis tersimpan bersama feedback ini 🧠</div>
+    <div class="fbg"><label>1. Overall, gimana kesan kamu terhadap e-book ini?</label>
+      <div class="rg">
+        <label class="ro"><input type="radio" name="q1" value="Sangat bermanfaat"> Sangat bermanfaat — langsung bisa diaplikasikan</label>
+        <label class="ro"><input type="radio" name="q1" value="Cukup bermanfaat"> Cukup bermanfaat — ada bagian yang perlu lebih dalam</label>
+        <label class="ro"><input type="radio" name="q1" value="Biasa saja"> Biasa saja — butuh improvement</label>
+        <label class="ro"><input type="radio" name="q1" value="Belum sesuai"> Belum sesuai ekspektasi — ada yang perlu diubah</label>
+      </div>
+    </div>
+    <hr class="fbdiv">
+    <div class="fbg"><label>2. Bab / materi mana yang paling kamu suka atau paling berguna?</label><textarea id="q2" placeholder="Tuliskan bab atau materi favorit kamu..."></textarea></div>
+    <hr class="fbdiv">
+    <div class="fbg"><label>3. Ada bagian yang kurang jelas atau perlu diperjelas?</label><textarea id="q3" placeholder="Bagian mana yang masih terasa membingungkan?"></textarea></div>
+    <hr class="fbdiv">
+    <div class="fbg"><label>4. Gimana menurut kamu gaya penulisan e-book ini?</label>
+      <div class="rg">
+        <label class="ro"><input type="radio" name="q4" value="Suka banget"> Suka banget — relatable &amp; tetap profesional</label>
+        <label class="ro"><input type="radio" name="q4" value="Bisa lebih santai"> Oke, tapi bisa lebih santai lagi</label>
+        <label class="ro"><input type="radio" name="q4" value="Bisa lebih formal"> Oke, tapi bisa lebih formal</label>
+        <label class="ro"><input type="radio" name="q4" value="Kurang pas"> Kurang pas — ada yang mau kamu sarankan</label>
+      </div>
+    </div>
+    <hr class="fbdiv">
+    <div class="fbg"><label>5. Topik apa yang kamu mau dibahas di edisi berikutnya? <small>(boleh lebih dari satu)</small></label>
+      <div class="cg">
+        <label class="co"><input type="checkbox" name="q5" value="Pesangon & PHK"> Perhitungan pesangon &amp; PHK</label>
+        <label class="co"><input type="checkbox" name="q5" value="Lembur"> Lembur: perhitungan dan batas maksimum</label>
+        <label class="co"><input type="checkbox" name="q5" value="PKWT vs PKWTT"> Hubungan kerja PKWT vs PKWTT</label>
+        <label class="co"><input type="checkbox" name="q5" value="Keselamatan dan Kesehatan Kerja"> Keselamatan dan Kesehatan Kerja (K3)</label>
+        <label class="co"><input type="checkbox" name="q5" value="Lainnya"> Lainnya</label>
+      </div>
+    </div>
+    <hr class="fbdiv">
+    <div class="fbg"><label>6. Ada hal lain yang mau kamu sampaikan? <small>(saran, kritik, apresiasi — semua welcome!)</small></label><textarea id="q6" placeholder="Tuliskan apa saja..." style="min-height:110px;"></textarea></div>
+    <div class="sts" id="fSts"></div>
+    <button class="bsub" onclick="submitFb()">Kirim Feedback 💜</button>
+  </div>
+  <div style="display:none;text-align:center;padding:60px 20px;" id="fbOk">
+    <div style="font-size:56px;margin-bottom:16px;">💜</div>
+    <h3 style="font-family:Fraunces,serif;font-size:30px;font-weight:700;color:var(--ink);margin-bottom:8px;">Terima Kasih!</h3>
+    <p style="color:var(--gray);font-size:15px;">Feedback kamu sudah kami terima. Ini berarti banget buat kami 💜</p>
+  </div>
+</div></div>
+
+<script>
+// ════════════════════════════════════════════════════════
+// PASTE URL APPS SCRIPT KAMU DI SINI (1 URL untuk semua)
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWyAO1o9BmMXjKAnim9mE3jljeftKdPiZqg0JSfZbrWfSKVaP5fYGi-w43b3d6vJ9O3w/exec";
+// ════════════════════════════════════════════════════════
+
+const PAGES = ["reg-page","bab-a","bab-b","bab-c","bab-d","bab-e","bab-f","closing-page","quiz-page","feedback-page"];
+
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  const t = document.getElementById(id);
+  if (t) { t.classList.add("active"); window.scrollTo({top:0,behavior:"smooth"}); }
+  document.getElementById("nav").style.display = id==="cover" ? "none" : "block";
+  const idx = PAGES.indexOf(id);
+  document.getElementById("pf").style.width = idx<0 ? "0%" : Math.round(((idx+1)/PAGES.length)*100)+"%";
+  document.querySelectorAll(".nb").forEach((b,i) => b.classList.toggle("on", PAGES[i]===id));
+}
+
+// REGISTRATION
+async function submitReg() {
+  const n=document.getElementById("rn").value.trim();
+  const c=document.getElementById("rc").value.trim();
+  const k=document.getElementById("rk").value.trim();
+  const j=document.getElementById("rj").value.trim();
+  if (!n||!c||!k) { setSts("rSts","err","⚠️ Mohon lengkapi Nama, Perusahaan, dan Kontak."); return; }
+  sessionStorage.setItem("reg_name",n);
+  sessionStorage.setItem("reg_company",c);
+  setSts("rSts","snd","📤 Menyimpan...");
+  if (SCRIPT_URL !== "PASTE_URL_KAMU_DI_SINI") {
+    try {
+      await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({type:"registration",name:n,company:c,contact:k,jabatan:j,timestamp:new Date().toISOString()})});
+    } catch(e){console.warn(e);}
+  }
+  showPage("bab-a");
+}
+
+// TYPING HANDLER — show save button after 20 chars
+function handleTyping(taId, sbId, chId) {
+  const len = document.getElementById(taId).value.trim().length;
+  const sb = document.getElementById(sbId);
+  const ch = document.getElementById(chId);
+  if (len >= 20) {
+    sb.classList.add("visible");
+    ch.textContent = len + " karakter — siap disimpan! ✅";
+    ch.style.color = "var(--mint)";
+  } else if (len >= 3) {
+    sb.classList.remove("visible");
+    ch.textContent = "Lanjutkan menulis... (" + len + "/20 karakter) ✏️";
+    ch.style.color = "var(--orange)";
+  } else {
+    sb.classList.remove("visible");
+    ch.textContent = "Mulai menulis untuk mengaktifkan tombol simpan ✏️";
+    ch.style.color = "";
+  }
+}
+
+// SAVE SPILL — lock textarea, reveal Real Talk, send to Sheets
+async function saveSpill(bab) {
+  const ta = document.getElementById("ta-"+bab);
+  const btn = document.getElementById("savebtn-"+bab);
+  const db = document.getElementById("db-"+bab);
+  const ss = document.getElementById("ss-"+bab);
+  const rv = document.getElementById("rv-"+bab);
+  const sb = document.getElementById("sb-"+bab);
+
+  const answer = ta.value.trim();
+  if (!answer || answer.length < 20) return;
+
+  // Lock & update UI
+  ta.disabled = true;
+  db.classList.add("locked");
+  btn.textContent = "✅ Jawaban Tersimpan";
+  btn.classList.add("saved");
+  btn.disabled = true;
+  ss.classList.add("visible");
+
+  // Reveal Real Talk
+  rv.classList.add("open");
+
+  // Send to Sheets
+  if (SCRIPT_URL !== "PASTE_URL_KAMU_DI_SINI") {
+    try {
+      const payload = {
+        type: "spill",
+        bab: bab.toUpperCase(),
+        name: sessionStorage.getItem("reg_name") || "Anonim",
+        company: sessionStorage.getItem("reg_company") || "",
+        answer: answer,
+        timestamp: new Date().toISOString()
+      };
+      await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(payload)});
+    } catch(e){console.warn("Spill save failed",e);}
+  }
+}
+
+// QUIZ
+let qAns=0, qOk=0;
+function ansQ(btn,sel,correct,expId){
+  const p=btn.closest(".opts");
+  if(p.dataset.done)return;
+  p.dataset.done="1";
+  p.querySelectorAll(".obt").forEach((b,i)=>{
+    b.disabled=true;
+    if(i===correct)b.classList.add("correct");
+    else if(i===sel&&sel!==correct)b.classList.add("wrong");
+  });
+  document.getElementById(expId).classList.add("vis");
+  qAns++; if(sel===correct)qOk++;
+  if(qAns===5){
+    const sc=document.getElementById("scoreCard");
+    document.getElementById("snum").textContent=qOk;
+    const msgs=["Tidak apa-apa, coba ulangi bab yang masih kurang jelas ✨",
+                "Tidak apa-apa, coba ulangi bab yang masih kurang jelas ✨",
+                "Lumayan! Beberapa bagian bisa diperdalam lagi 💪",
+                "Bagus! Tinggal diperkuat dengan praktik langsung 💪",
+                "Hampir sempurna! Pemahaman kamu sudah sangat solid 🔥",
+                "Luar biasa! Semua benar — kamu sudah sangat paham! 🏆"];
+    document.getElementById("smsg").textContent=msgs[qOk];
+    sc.classList.add("vis");
+    setTimeout(()=>sc.scrollIntoView({behavior:"smooth",block:"center"}),300);
+  }
+}
+
+// FEEDBACK
+async function submitFb(){
+  const q1=document.querySelector("input[name=\"q1\"]:checked")?.value||"";
+  if(!q1){setSts("fSts","err","⚠️ Mohon pilih kesan kamu (pertanyaan 1).");return;}
+  setSts("fSts","snd","📤 Mengirim feedback...");
+  const payload={
+    type:"feedback",
+    name:sessionStorage.getItem("reg_name")||"Anonim",
+    company:sessionStorage.getItem("reg_company")||"",
+    quizScore:qOk+"/5",
+    q1_kesan:q1,
+    q2_materi:document.getElementById("q2").value.trim(),
+    q3_kurang_jelas:document.getElementById("q3").value.trim(),
+    q4_gaya:document.querySelector("input[name=\"q4\"]:checked")?.value||"",
+    q5_topik:[...document.querySelectorAll("input[name=\"q5\"]:checked")].map(c=>c.value).join(", "),
+    q6_lainnya:document.getElementById("q6").value.trim(),
+    timestamp:new Date().toISOString()
+  };
+  if(SCRIPT_URL!=="PASTE_URL_KAMU_DI_SINI"){
+    try{
+      await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",
+        headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    }catch(e){console.warn(e);}
+  }
+  document.getElementById("fbWrap").style.display="none";
+  document.getElementById("fbOk").style.display="block";
+}
+
+function setSts(id,type,msg){
+  const e=document.getElementById(id);
+  e.className="sts "+type;e.textContent=msg;
+}
+
+document.getElementById("nav").style.display="none";
+</script>
+
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║         SETUP GOOGLE SHEETS — COPY KODE INI KE APPS SCRIPT      ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                  ║
+║  LANGKAH 1: Buat Google Spreadsheet baru                         ║
+║  Nama: "Panduan Pengupahan Responses"                            ║
+║  Buat 3 tab: Registration | SpillYourThoughts | Feedback         ║
+║                                                                  ║
+║  LANGKAH 2: Isi header tiap tab di baris pertama:                ║
+║                                                                  ║
+║  Tab Registration:                                               ║
+║  Timestamp | Nama | Perusahaan | Kontak | Jabatan                ║
+║                                                                  ║
+║  Tab SpillYourThoughts:                                          ║
+║  Timestamp | Nama | Perusahaan | Bab | Jawaban                   ║
+║                                                                  ║
+║  Tab Feedback:                                                   ║
+║  Timestamp | Nama | Perusahaan | Quiz Score | Q1 Kesan |         ║
+║  Q2 Materi Favorit | Q3 Kurang Jelas | Q4 Gaya Penulisan |       ║
+║  Q5 Topik Berikutnya | Q6 Lainnya                                ║
+║                                                                  ║
+║  LANGKAH 3: Extensions > Apps Script                             ║
+║  Hapus semua kode yang ada, paste kode di bawah ini:             ║
+║                                                                  ║
+║  function doPost(e) {                                            ║
+║    const d = JSON.parse(e.postData.contents);                    ║
+║    const ss = SpreadsheetApp.getActiveSpreadsheet();             ║
+║    if (d.type === "registration") {                              ║
+║      ss.getSheetByName("Registration").appendRow([              ║
+║        d.timestamp,d.name,d.company,d.contact,d.jabatan]);       ║
+║    }                                                             ║
+║    if (d.type === "spill") {                                     ║
+║      ss.getSheetByName("SpillYourThoughts").appendRow([          ║
+║        d.timestamp,d.name,d.company,d.bab,d.answer]);            ║
+║    }                                                             ║
+║    if (d.type === "feedback") {                                  ║
+║      ss.getSheetByName("Feedback").appendRow([                   ║
+║        d.timestamp,d.name,d.company,d.quizScore,                 ║
+║        d.q1_kesan,d.q2_materi,d.q3_kurang_jelas,                 ║
+║        d.q4_gaya,d.q5_topik,d.q6_lainnya]);                      ║
+║    }                                                             ║
+║    return ContentService                                         ║
+║      .createTextOutput(JSON.stringify({status:"ok"}))            ║
+║      .setMimeType(ContentService.MimeType.JSON);                 ║
+║  }                                                               ║
+║                                                                  ║
+║  LANGKAH 4: Deploy > New Deployment                              ║
+║  Type: Web App                                                   ║
+║  Execute as: Me                                                  ║
+║  Who has access: Anyone                                          ║
+║  Klik Deploy > Copy URL                                          ║
+║                                                                  ║
+║  LANGKAH 5: Buka file HTML ini > Ctrl+F > cari:                  ║
+║  "PASTE_URL_KAMU_DI_SINI"                                        ║
+║  Ganti dengan URL yang kamu copy tadi. Simpan file. Selesai!     ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+</body>
+</html>
