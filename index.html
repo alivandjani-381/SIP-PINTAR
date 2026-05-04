@@ -24,6 +24,7 @@ body{font-family:"Plus Jakarta Sans",sans-serif;background:var(--surface);color:
 
 /* COVER */
 #cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 24px;position:relative;overflow:hidden;background:#fff;}
+#cover.hidden{display:none;}
 .blob{position:absolute;border-radius:50%;pointer-events:none;}
 .b1{width:560px;height:560px;background:radial-gradient(circle,rgba(108,63,196,.12) 0%,transparent 70%);top:-120px;right:-120px;}
 .b2{width:440px;height:440px;background:radial-gradient(circle,rgba(7,122,82,.1) 0%,transparent 70%);bottom:-100px;left:-100px;}
@@ -49,14 +50,65 @@ body{font-family:"Plus Jakarta Sans",sans-serif;background:var(--surface);color:
 .btn-cta{background:linear-gradient(135deg,var(--violet),var(--pink));color:#fff;border:none;padding:17px 48px;font-family:"Fraunces",serif;font-size:18px;font-weight:700;border-radius:50px;cursor:pointer;box-shadow:0 8px 32px rgba(108,63,196,.3);transition:transform .2s,box-shadow .2s;letter-spacing:.3px;}
 .btn-cta:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 48px rgba(108,63,196,.42);}
 
-/* NAV */
-#nav{display:none;position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:2px solid var(--border);}
-.prog{height:4px;background:var(--border);}
-.pf{height:100%;background:linear-gradient(90deg,var(--violet),var(--pink));transition:width .4s ease;width:0%;}
-.ni{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;padding:10px 14px;}
-.ni::-webkit-scrollbar{display:none;}
-.nb{flex-shrink:0;background:none;border:none;font-family:"Plus Jakarta Sans",sans-serif;font-size:12px;font-weight:700;color:var(--gray);padding:7px 14px;border-radius:50px;cursor:pointer;transition:all .2s;white-space:nowrap;}
-.nb:hover,.nb.on{background:var(--violet-bg);color:var(--violet);}
+/* SIDEBAR */
+#nav{display:none;}
+#sidebar{
+  position:fixed;top:0;left:0;height:100vh;width:240px;
+  background:#fff;border-right:1.5px solid var(--border);
+  display:none;flex-direction:column;z-index:200;
+  box-shadow:2px 0 20px rgba(0,0,0,.07);
+  transition:transform .3s ease;
+}
+#sidebar.show{display:flex;}
+.sb-head{padding:20px 18px 14px;border-bottom:1.5px solid var(--border);flex-shrink:0;}
+.sb-logo{font-family:"Fraunces",serif;font-size:14px;font-weight:700;color:var(--violet);line-height:1.3;}
+.sb-logo small{display:block;font-size:10px;color:var(--gray);font-family:"Plus Jakarta Sans",sans-serif;font-weight:500;margin-top:2px;letter-spacing:.3px;}
+.sb-prog{padding:12px 18px 8px;flex-shrink:0;border-bottom:1px solid var(--border);}
+.sb-prog-label{font-size:10px;color:var(--gray);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;font-family:"Plus Jakarta Sans",sans-serif;}
+.prog{height:5px;background:var(--border);border-radius:50px;overflow:hidden;}
+.pf{height:100%;background:linear-gradient(90deg,var(--violet),var(--pink));transition:width .4s ease;width:0%;border-radius:50px;}
+.sb-pct{font-size:11px;color:var(--violet);font-weight:700;margin-top:5px;font-family:"Plus Jakarta Sans",sans-serif;}
+.sb-nav{flex:1;overflow-y:auto;padding:10px 10px 20px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.nb{
+  display:flex;align-items:center;gap:10px;width:100%;
+  background:none;border:none;
+  font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;font-weight:600;
+  color:var(--gray);padding:10px 12px;border-radius:12px;
+  cursor:pointer;transition:all .2s;text-align:left;margin-bottom:2px;
+}
+.nb:hover{background:var(--violet-bg);color:var(--violet);}
+.nb.on{background:var(--violet-bg);color:var(--violet);font-weight:700;}
+.nb .ni{font-size:16px;flex-shrink:0;width:22px;text-align:center;}
+/* Hamburger — mobile only */
+.ham{
+  position:fixed;top:14px;left:14px;z-index:300;
+  width:42px;height:42px;border-radius:50%;
+  background:var(--violet);color:#fff;border:none;
+  font-size:18px;cursor:pointer;
+  box-shadow:0 4px 16px rgba(108,63,196,.4);
+  transition:transform .2s;
+  align-items:center;justify-content:center;display:none;
+}
+.ham:hover{transform:scale(1.08);}
+.overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.2);z-index:190;
+  backdrop-filter:blur(1px);
+}
+.overlay.show{display:block;}
+/* Desktop: sidebar fixed, push body */
+@media(min-width:769px){
+  body.has-sidebar{padding-left:240px;}
+  #sidebar.show{transform:translateX(0);}
+}
+/* Mobile: hamburger, sidebar slides in */
+@media(max-width:768px){
+  body.has-sidebar{padding-left:0;}
+  .ham{display:flex;}
+  #sidebar.show{transform:translateX(-100%);}
+  #sidebar.show.open{transform:translateX(0);}
+  .wrap{padding-top:68px;}
+}
 
 /* LAYOUT */
 .page{display:none;}.page.active{display:block;}
@@ -301,20 +353,43 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
   </div>
 </section>
 
-<!-- NAV -->
-<div id="nav">
-  <div class="prog"><div class="pf" id="pf"></div></div>
-  <div class="ni">
-    <button class="nb" onclick="showPage('reg-page')">📋 Daftar</button>
-    <button class="nb" onclick="showPage('bab-a')">A · Fondasi</button>
-    <button class="nb" onclick="showPage('bab-b')">B · Upah Min.</button>
-    <button class="nb" onclick="showPage('bab-c')">C · Komponen</button>
-    <button class="nb" onclick="showPage('bab-d')">D · Hak &amp; Kwjb.</button>
-    <button class="nb" onclick="showPage('bab-e')">E · Administrasi</button>
-    <button class="nb" onclick="showPage('bab-f')">F · Kepatuhan</button>
-    <button class="nb" onclick="showPage('closing-page')">📌 Penutup</button>
-    <button class="nb" onclick="showPage('quiz-page')">🧠 Kuis</button>
-    <button class="nb" onclick="showPage('feedback-page')">💜 Feedback</button>
+<!-- HAMBURGER (mobile only) -->
+<button class="ham" id="hamBtn" onclick="toggleSidebar()">☰</button>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div class="sb-head">
+    <div class="sb-logo">SIP PINTAR<small>Pengupahan Ketenagakerjaan</small></div>
+  </div>
+  <div class="sb-prog">
+    <div class="sb-prog-label">Progress</div>
+    <div class="prog"><div class="pf" id="pf"></div></div>
+    <div class="sb-pct" id="progPct">0%</div>
+  </div>
+  <div class="sb-nav">
+    <button class="nb" onclick="navTo('reg-page')"><span class="ni">📋</span>Registrasi</button>
+    <button class="nb" onclick="navTo('bab-a')"><span class="ni">🏛️</span>A · Fondasi Hukum</button>
+    <button class="nb" onclick="navTo('bab-b')"><span class="ni">📊</span>B · Upah Minimum</button>
+    <button class="nb" onclick="navTo('bab-c')"><span class="ni">🧾</span>C · Komponen Upah</button>
+    <button class="nb" onclick="navTo('bab-d')"><span class="ni">⚖️</span>D · Hak &amp; Kewajiban</button>
+    <button class="nb" onclick="navTo('bab-e')"><span class="ni">📁</span>E · Administrasi</button>
+    <button class="nb" onclick="navTo('bab-f')"><span class="ni">🚨</span>F · Kepatuhan</button>
+    <button class="nb" onclick="navTo('closing-page')"><span class="ni">📌</span>Penutup</button>
+    <button class="nb" onclick="navTo('quiz-page')"><span class="ni">🧠</span>Kuis</button>
+    <button class="nb" onclick="navTo('feedback-page')"><span class="ni">💜</span>Feedback</button>
+  </div>
+</div>
+
+<!-- WELCOME SPLASH -->
+<div id="splash" style="display:none;position:fixed;inset:0;background:linear-gradient(135deg,var(--violet-bg),var(--pink-bg));z-index:400;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:40px;">
+  <div style="font-size:56px;margin-bottom:20px;">🎉</div>
+  <h2 id="splashName" style="font-family:Fraunces,serif;font-size:28px;font-weight:700;color:var(--ink);margin-bottom:10px;"></h2>
+  <p style="color:var(--gray);font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;">Registrasi berhasil! Kamu akan masuk ke Bab A...</p>
+  <div style="margin-top:24px;width:48px;height:4px;background:var(--border);border-radius:50px;overflow:hidden;">
+    <div id="splashBar" style="height:100%;width:0%;background:linear-gradient(90deg,var(--violet),var(--pink));border-radius:50px;transition:width 1.8s ease;"></div>
   </div>
 </div>
 
@@ -880,13 +955,71 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWyAO1o9BmMXjKAnim9
 const PAGES = ["reg-page","bab-a","bab-b","bab-c","bab-d","bab-e","bab-f","closing-page","quiz-page","feedback-page"];
 
 function showPage(id) {
+  // Hide/show pages
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   const t = document.getElementById(id);
   if (t) { t.classList.add("active"); window.scrollTo({top:0,behavior:"smooth"}); }
-  document.getElementById("nav").style.display = id==="cover" ? "none" : "block";
+
+  // Hide cover when leaving it
+  const cover = document.getElementById("cover");
+  if (id === "cover") { cover.classList.remove("hidden"); }
+  else { cover.classList.add("hidden"); }
+
+  // Show/hide sidebar
+  const sb = document.getElementById("sidebar");
+  if (id === "cover") {
+    sb.classList.remove("show");
+    document.body.classList.remove("has-sidebar");
+  } else {
+    sb.classList.add("show");
+    document.body.classList.add("has-sidebar");
+  }
+
+  // Progress bar
   const idx = PAGES.indexOf(id);
-  document.getElementById("pf").style.width = idx<0 ? "0%" : Math.round(((idx+1)/PAGES.length)*100)+"%";
+  const pct = idx < 0 ? 0 : Math.round(((idx+1)/PAGES.length)*100);
+  document.getElementById("pf").style.width = pct + "%";
+  const pctEl = document.getElementById("progPct");
+  if (pctEl) pctEl.textContent = pct + "%";
+
+  // Update active nav item
   document.querySelectorAll(".nb").forEach((b,i) => b.classList.toggle("on", PAGES[i]===id));
+
+  // Close mobile sidebar after navigating
+  closeSidebar();
+}
+
+function navTo(id) { showPage(id); }
+
+// SIDEBAR TOGGLE — mobile only
+function toggleSidebar() {
+  const sb = document.getElementById("sidebar");
+  const ov = document.getElementById("overlay");
+  const isOpen = sb.classList.contains("open");
+  if (isOpen) {
+    sb.classList.remove("open");
+    ov.classList.remove("show");
+  } else {
+    sb.classList.add("open");
+    ov.classList.add("show");
+  }
+}
+function closeSidebar() {
+  document.getElementById("sidebar").classList.remove("open");
+  const ov = document.getElementById("overlay");
+  if (ov) ov.classList.remove("show");
+}
+
+// SPLASH SCREEN after registration
+function showSplash(name) {
+  const splash = document.getElementById("splash");
+  document.getElementById("splashName").textContent = "Selamat datang, " + name + "! 👋";
+  splash.style.display = "flex";
+  setTimeout(() => { document.getElementById("splashBar").style.width = "100%"; }, 100);
+  setTimeout(() => {
+    splash.style.display = "none";
+    showPage("bab-a");
+  }, 2200);
 }
 
 // REGISTRATION
@@ -906,7 +1039,7 @@ async function submitReg() {
         body:JSON.stringify({type:"registration",name:n,company:c,contact:k,jabatan:j,timestamp:new Date().toISOString()})});
     } catch(e){console.warn(e);}
   }
-  showPage("bab-a");
+  showSplash(n);
 }
 
 // TYPING HANDLER — show save button after 20 chars
@@ -1031,7 +1164,7 @@ function setSts(id,type,msg){
   e.className="sts "+type;e.textContent=msg;
 }
 
-document.getElementById("nav").style.display="none";
+// Sidebar hidden by default until nav-visible class added
 </script>
 
 <!--
