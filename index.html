@@ -463,6 +463,45 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+@keyframes popIn{from{opacity:0;transform:scale(.9) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+/* SPILL WARNING MODAL */
+#regWarning{
+  position:fixed;inset:0;z-index:600;
+  background:rgba(8,28,21,.7);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+#regWarning.visible{display:flex;}
+#spillWarning{
+  position:fixed;inset:0;z-index:600;
+  background:rgba(8,28,21,.7);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+#spillWarning.visible{display:flex;}
+.sw-box{
+  background:#fff;border-radius:24px;padding:36px 32px;
+  max-width:380px;width:100%;text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+  animation:popIn .3s ease;
+  border-top:4px solid var(--forest);
+}
+.sw-emoji{font-size:44px;margin-bottom:14px;display:block;}
+.sw-title{
+  font-family:"Fraunces",serif;font-size:20px;font-weight:700;
+  color:var(--forest-dark);margin-bottom:10px;
+}
+.sw-text{
+  font-size:14px;color:var(--gray);line-height:1.7;margin-bottom:24px;
+  font-family:"Plus Jakarta Sans",sans-serif;
+}
+.sw-btn{
+  width:100%;background:linear-gradient(135deg,#1B4332,#2D6A4F);
+  color:#fff;border:none;padding:14px;border-radius:50px;
+  font-family:"Fraunces",serif;font-size:16px;font-weight:700;
+  cursor:pointer;transition:all .2s;
+  box-shadow:0 4px 16px rgba(27,67,50,.3);
+}
+.sw-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(27,67,50,.4);}
 
 @media(max-width:600px){
   .rform,.fbform{padding:24px 18px;}
@@ -867,12 +906,12 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <tr><td><strong>Grade 4</strong></td><td>Manager</td><td>Rp 12.000.000</td><td>Rp 15.000.000</td><td>Rp 18.000.000</td></tr>
   </tbody></table></div>
   <div class="stitle">E.3 Iuran BPJS — Tabel Lengkap</div>
-  <div class="tw"><table><thead><tr><th>Program</th><th>Perusahaan</th><th>Pekerja</th><th>Batas Setor</th></tr></thead><tbody>
-    <tr><td>JKK (Kecelakaan Kerja)</td><td>0,24%–1,74%</td><td>0%</td><td>Tgl 15</td></tr>
-    <tr><td>JKM (Kematian)</td><td>0,30%</td><td>0%</td><td>Tgl 15</td></tr>
-    <tr><td>JHT (Hari Tua)</td><td>3,70%</td><td>2,00%</td><td>Tgl 15</td></tr>
-    <tr><td>JP (Pensiun)</td><td>2,00%</td><td>1,00%</td><td>Tgl 15</td></tr>
-    <tr><td>BPJS Kesehatan</td><td>4%</td><td>1%</td><td>Tgl 10</td></tr>
+  <div class="tw"><table><thead><tr><th>Program</th><th>Perusahaan</th><th>Pekerja</th></tr></thead><tbody>
+    <tr><td>JKK (Kecelakaan Kerja)</td><td>0,24%–1,74%</td><td>0%</td></tr>
+    <tr><td>JKM (Kematian)</td><td>0,30%</td><td>0%</td></tr>
+    <tr><td>JHT (Hari Tua)</td><td>3,70%</td><td>2,00%</td></tr>
+    <tr><td>JP (Pensiun)</td><td>2,00%</td><td>1,00%</td></tr>
+    <tr><td>BPJS Kesehatan</td><td>4%</td><td>1%</td></tr>
   </tbody></table></div>
   <div class="cal cc"><div class="ci">🚨</div><div class="cb"><p><strong>Potong iuran BPJS dari upah tapi TIDAK setor ke BPJS = PENGGELAPAN.</strong> Bisa kena KUHP 374 — bukan sekadar pelanggaran administratif!</p></div></div>
   <div class="spill">
@@ -1123,6 +1162,9 @@ function showPage(id) {
   if (id === "cover") { cover.classList.remove("hidden"); }
   else { cover.classList.add("hidden"); }
 
+  // Track current bab for spill lock
+  currentBab = id;
+
   // Show/hide sidebar
   const sb = document.getElementById("sidebar");
   if (id === "cover") {
@@ -1147,7 +1189,54 @@ function showPage(id) {
   closeSidebar();
 }
 
-function navTo(id) { showPage(id); }
+// Track registration
+let isRegistered = false;
+// Track which babs have been saved
+const spillSaved = {a:false, b:false, c:false, d:false, e:false, f:false};
+// Map: which bab page requires spill saved before leaving
+const BAB_SPILL_MAP = {
+  'bab-a':'a','bab-b':'b','bab-c':'c',
+  'bab-d':'d','bab-e':'e','bab-f':'f'
+};
+let pendingNavTarget = null;
+let currentBab = null;
+
+function navTo(id) {
+  // Block if not registered yet (except reg-page itself)
+  if (!isRegistered && id !== 'reg-page' && id !== 'cover') {
+    showRegWarning();
+    return;
+  }
+  // Check if we're leaving a bab that has unsaved spill
+  if (currentBab && BAB_SPILL_MAP[currentBab] && !spillSaved[BAB_SPILL_MAP[currentBab]]) {
+    pendingNavTarget = id;
+    showSpillWarning();
+    return;
+  }
+  showPage(id);
+}
+
+function showRegWarning() {
+  document.getElementById('regWarning').classList.add('visible');
+}
+function closeRegWarning() {
+  document.getElementById('regWarning').classList.remove('visible');
+  showPage('reg-page');
+}
+
+function showSpillWarning() {
+  document.getElementById('spillWarning').classList.add('visible');
+}
+
+function closeSpillWarning() {
+  document.getElementById('spillWarning').classList.remove('visible');
+  pendingNavTarget = null;
+  // Scroll to spill section
+  const babId = currentBab;
+  const bab = BAB_SPILL_MAP[babId];
+  const ta = document.getElementById('ta-' + bab);
+  if (ta) ta.scrollIntoView({behavior:'smooth', block:'center'});
+}
 
 // SIDEBAR TOGGLE — mobile only
 function toggleSidebar() {
@@ -1189,6 +1278,7 @@ async function submitReg() {
   if (!n||!c||!k) { setSts("rSts","err","⚠️ Mohon lengkapi Nama, Perusahaan, dan Kontak."); return; }
   sessionStorage.setItem("reg_name",n);
   sessionStorage.setItem("reg_company",c);
+  isRegistered = true;
   setSts("rSts","snd","📤 Menyimpan...");
   if (SCRIPT_URL !== "PASTE_URL_KAMU_DI_SINI") {
     try {
@@ -1231,6 +1321,9 @@ async function saveSpill(bab) {
 
   const answer = ta.value.trim();
   if (!answer || answer.length < 20) return;
+
+  // Mark as saved
+  spillSaved[bab] = true;
 
   // Lock & update UI
   ta.disabled = true;
@@ -1384,6 +1477,15 @@ function getStars(score) {
   return '⭐'.repeat(score) + '☆'.repeat(5 - score);
 }
 
+const CAPTIONS = {
+  5: "Achievement unlocked: Paham Pengupahan! 🔓",
+  4: "Almost there: Paham Pengupahan! 🔓",
+  3: "Loading... Paham Pengupahan 🔄",
+  2: "Quest accepted: Paham Pengupahan 🌱",
+  1: "New journey started: Paham Pengupahan 🚀",
+  0: "New journey started: Paham Pengupahan 🚀"
+};
+
 function showScoreCard() {
   const badge = BADGES[qOk] || BADGES[0];
   const stars = getStars(qOk);
@@ -1392,6 +1494,7 @@ function showScoreCard() {
   document.getElementById('sc-stars').textContent = stars;
   document.getElementById('sc-score').textContent = qOk + '/5';
   document.getElementById('sc-badge').textContent = badge.emoji + ' ' + badge.text;
+  document.getElementById('sc-caption').textContent = CAPTIONS[qOk] || CAPTIONS[0];
   document.getElementById('sc-date').textContent = today;
 
   document.getElementById('scoreCardWrap').classList.add('visible');
@@ -1425,14 +1528,35 @@ async function downloadScoreCard() {
 
 function shareToWA() {
   const badge = BADGES[qOk] || BADGES[0];
+  const caption = CAPTIONS[qOk] || CAPTIONS[0];
   const stars = getStars(qOk);
-  const text = badge.emoji + ' ' + badge.text + '%0A%0AAku baru selesai mengikuti sosialisasi Pengupahan Ketenagakerjaan bareng SIP PINTAR!%0A%0ASkor ku: ' + stars + ' (' + qOk + '/5)%0A%0AKamu juga mau coba? 👇%0Aalivandjani-381.github.io/SIP-PINTAR';
+  const text = encodeURIComponent(caption + '\n\nAku baru selesai mengikuti sosialisasi Pengupahan Ketenagakerjaan bareng SIP PINTAR!\n\nSkor ku: ' + stars + ' (' + qOk + '/5)\n\nKamu juga mau coba? 👇\nalivandjani-381.github.io/SIP-PINTAR');
   window.open('https://wa.me/?text=' + text, '_blank');
 }
 </script>
 
 <!-- html2canvas library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- REG WARNING MODAL -->
+<div id="regWarning">
+  <div class="sw-box">
+    <span class="sw-emoji">📋</span>
+    <div class="sw-title">Lengkapi registrasi dulu ya!</div>
+    <p class="sw-text">Isi formulir registrasi terlebih dahulu sebelum memulai e-book — hanya butuh semenit! 🌿</p>
+    <button class="sw-btn" onclick="closeRegWarning()">Oke, Isi Registrasi Dulu! 📋</button>
+  </div>
+</div>
+
+<!-- SPILL WARNING MODAL -->
+<div id="spillWarning">
+  <div class="sw-box">
+    <span class="sw-emoji">🌿</span>
+    <div class="sw-title">Jawaban diskusi kamu belum tersimpan!</div>
+    <p class="sw-text">Yuk balik sebentar dan simpan dulu — jawaban kamu berarti banget untuk kami! 💚</p>
+    <button class="sw-btn" onclick="closeSpillWarning()">Oke, Balik &amp; Simpan! 🌿</button>
+  </div>
+</div>
 
 <!-- SCORE CARD MODAL -->
 <div id="scoreCardWrap" onclick="if(event.target===this)closeScoreCard()">
@@ -1444,7 +1568,7 @@ function shareToWA() {
       <div class="sc-corner br"></div>
       <div class="sc-logo">✦ SIP PINTAR ✦</div>
       <div class="sc-subtitle">Sosialisasi Interaktif Pengawasan Ketenagakerjaan</div>
-      <div class="sc-cert-text">Telah menyelesaikan sosialisasi<br>Pengupahan Ketenagakerjaan<br>berbasis studi kasus interaktif</div>
+      <div class="sc-cert-text" id="sc-caption">Achievement unlocked: Paham Pengupahan! 🔓</div>
       <div class="sc-stars" id="sc-stars">⭐⭐⭐⭐⭐</div>
       <div class="sc-score" id="sc-score">5/5</div>
       <div class="sc-score-label">Skor Kuis</div>
