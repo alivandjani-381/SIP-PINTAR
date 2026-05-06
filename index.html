@@ -570,6 +570,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <button class="nb" onclick="navTo('bab-f')"><span class="ni">🚨</span>F · Kepatuhan</button>
     <button class="nb" onclick="navTo('closing-page')"><span class="ni">📌</span>Penutup</button>
     <button class="nb" onclick="navTo('quiz-page')"><span class="ni">🧠</span>Kuis</button>
+    <button class="nb" onclick="navTo('kanal-page')"><span class="ni">📢</span>Kanal Pengaduan</button>
     <button class="nb" onclick="navTo('feedback-page')"><span class="ni">💜</span>Feedback</button>
   </div>
 </div>
@@ -1095,7 +1096,65 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <div class="smsg" id="smsg"></div>
   <button onclick="showScoreCard()" style="margin-top:20px;background:linear-gradient(135deg,#D4AF37,#B8860B);color:#081C15;border:none;padding:14px 32px;border-radius:50px;font-family:'Fraunces',serif;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(212,175,55,.4);transition:transform .2s;">🏆 Lihat Score Card Kamu →</button>
   </div>
-  <div class="cnav"><button class="bbk" onclick="showPage('closing-page')">← Penutup</button><button class="bfw" onclick="showPage('feedback-page')">Isi Feedback 💜 →</button></div>
+  <div class="cnav"><button class="bbk" onclick="showPage('closing-page')">← Penutup</button><button class="bfw" onclick="navTo('kanal-page')">Kanal Pengaduan 📢 →</button></div>
+</div></div>
+
+<!-- KANAL PENGADUAN -->
+<div id="kanal-page" class="page"><div class="wrap" style="max-width:800px;">
+  <div class="chero" data-L="📢" style="--hc1:#1B4332;--hc2:#40916C;"><div class="hi">
+    <div class="cbadge">Referensi Praktis</div>
+    <h2>Kanal Pengaduan Tenaga Kerja DKI Jakarta</h2>
+    <div class="ctline">Tau Ilmunya, Tau Juga Kemana Harus Lapor 💪</div>
+  </div></div>
+
+  <p class="bt">Jika kamu atau rekan kerja mengalami pelanggaran hak ketenagakerjaan, berikut adalah kanal-kanal resmi yang dapat digunakan untuk melapor atau meminta bantuan.</p>
+
+  <div class="stitle">Kanal Pengaduan Resmi</div>
+
+  <!-- Kanal Tatap Muka -->
+  <div class="cal cm" style="margin-bottom:16px;"><div class="ci">🏛️</div><div class="cb">
+    <p><strong>Kanal Tatap Muka</strong></p>
+    <p>Kanal ini disediakan untuk masyarakat yang ingin bertemu langsung dengan petugas atau masyarakat yang kesulitan mengakses kanal pengaduan lain.</p>
+    <p style="margin-top:8px;">• Pendopo Balai Kota DKI Jakarta<br>• Kantor Disnakertransgi Prov. DKI Jakarta<br>• Kantor Suku Disnakertransgi Kota Administrasi 5 Wilayah</p>
+  </div></div>
+
+  <!-- Kanal JAKI -->
+  <div class="cal cl" style="margin-bottom:16px;"><div class="ci">📱</div><div class="cb">
+    <p><strong>Kanal Aplikasi JAKI</strong></p>
+    <p>Aplikasi ponsel untuk berbagai macam kebutuhan warga Jakarta dengan banyak fitur menarik — pemantauan maupun laporan dapat dilakukan secara real-time.</p>
+    <p style="margin-top:8px;"><strong>Download:</strong> Cari "JAKI" di App Store / Google Play Store</p>
+  </div></div>
+
+  <!-- Kanal Surat Elektronik -->
+  <div class="cal cs" style="margin-bottom:16px;"><div class="ci">📧</div><div class="cb">
+    <p><strong>Kanal Surat Elektronik</strong></p>
+    <p>Kanal integrasi pelaporan warga dengan menggunakan pesan ataupun surat secara daring melalui berbagai macam media.</p>
+    <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;">
+      <div>📧 dki@jakarta.go.id</div>
+      <div>📧 surat.nakertransgi@gmail.com</div>
+      <div>💬 WA: 08111272206</div>
+      <div>🚩 LAPOR 1708</div>
+    </div>
+  </div></div>
+
+  <!-- Kanal Layanan Lainnya -->
+  <div class="cal co" style="margin-bottom:16px;"><div class="ci">🌐</div><div class="cb">
+    <p><strong>Kanal Layanan Lainnya</strong></p>
+    <p>Selain kanal daerah, tersedia juga kanal pengaduan di tingkat nasional yang menangani isu lintas provinsi atau membutuhkan kewenangan pusat.</p>
+    <p style="margin-top:8px;">• Kementerian Ketenagakerjaan — <strong>Lapor Menaker</strong><br>• Wakil Presiden — <strong>Lapor Mas Wapres</strong></p>
+  </div></div>
+
+  <div class="cal cv"><div class="ci">💡</div><div class="cb">
+    <p><strong>Tips Sebelum Melapor:</strong></p>
+    <p>• Dokumentasikan bukti pelanggaran (slip gaji, kontrak kerja, screenshot, dll.)</p>
+    <p>• Catat kronologi kejadian secara rinci</p>
+    <p>• Simpan salinan semua komunikasi dengan perusahaan</p>
+  </div></div>
+
+  <div class="cnav">
+    <button class="bbk" onclick="navTo('quiz-page')">← Kuis</button>
+    <button class="bfw" onclick="navTo('feedback-page')">Isi Feedback 💜 →</button>
+  </div>
 </div></div>
 
 <!-- FEEDBACK -->
@@ -1152,7 +1211,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWyAO1o9BmMXjKAnim9mE3jljeftKdPiZqg0JSfZbrWfSKVaP5fYGi-w43b3d6vJ9O3w/exec";
 // ════════════════════════════════════════════════════════
 
-const PAGES = ["reg-page","bab-a","bab-b","bab-c","bab-d","bab-e","bab-f","closing-page","quiz-page","feedback-page"];
+const PAGES = ["reg-page","bab-a","bab-b","bab-c","bab-d","bab-e","bab-f","closing-page","quiz-page","kanal-page","feedback-page"];
 
 function showPage(id) {
   // Hide/show pages
