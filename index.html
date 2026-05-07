@@ -459,6 +459,9 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
 .fbg textarea::placeholder{color:#C0C0D0;}
 .fbg textarea:focus{border-color:var(--forest-border);box-shadow:0 0 0 3px rgba(45,106,79,.1);}
 
+
+/* FOOTNOTE */
+.footnote{font-size:11px;color:var(--gray);font-style:italic;margin-top:6px;padding:6px 10px;border-left:2px solid var(--border);background:var(--surface);border-radius:0 6px 6px 0;font-family:"Plus Jakarta Sans",sans-serif;line-height:1.6;}
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 @keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
@@ -532,11 +535,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     </div>
     <h1 class="ch1">Sosialisasi Interaktif<br>Pengawasan<br>Ketenagakerjaan<br><span style="font-size:clamp(16px,3vw,28px);font-weight:700;color:rgba(255,255,255,.75);-webkit-text-fill-color:rgba(255,255,255,.75);">berbasis studi kasus</span></h1>
     <p class="csub">Pengupahan Ketenagakerjaan</p>
-    <div class="cpills">
-      <span class="cpill cp1">🏛️ UU No. 6/2023</span><span class="cpill cp2">📋 PP No. 51/2023</span>
-      <span class="cpill cp3">🏙️ Kepgub DKI 1142/2025</span><span class="cpill cp4">✅ Upah Minimum</span>
-      <span class="cpill cp5">⚡ Golden Rule 75%</span><span class="cpill cp6">🎯 6 Bab Interaktif</span>
-    </div>
+
     <div class="crefs"><p>Referensi Hukum</p>
       <strong>PP No. 51 Tahun 2023 &nbsp;·&nbsp; UU No. 6 Tahun 2023<br>Kepgub DKI Jakarta No. 1142 Tahun 2025</strong>
     </div>
@@ -592,7 +591,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <div class="rpriv">🔒 Data kamu aman — hanya untuk keperluan pembinaan</div>
     <div class="fg"><label>Nama Lengkap</label><input type="text" id="rn" placeholder="Nama lengkap kamu"></div>
     <div class="fg"><label>Perusahaan / Instansi</label><input type="text" id="rc" placeholder="Nama perusahaan atau instansi"></div>
-    <div class="fg"><label>Kontak <span class="opt">(email atau nomor telepon)</span></label><input type="text" id="rk" placeholder="email@contoh.com atau 08xx-xxxx-xxxx"></div>
+
     <div class="fg"><label>Jabatan / Posisi <span class="opt">opsional</span></label><input type="text" id="rj" placeholder="Jabatan atau posisi kamu saat ini"></div>
     <div class="sts" id="rSts"></div>
     <button class="bsub" onclick="submitReg()">Selamat Belajar! ✨</button>
@@ -620,7 +619,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
   <div class="cal cs"><div class="ci">📌</div><div class="cb">
     <p><strong>Catatan Khusus DKI Jakarta</strong></p>
     <p>Jakarta tidak memiliki UMK karena tidak ada kabupaten/kota otonom di dalamnya. Yang berlaku hanya <strong>UMP</strong> (untuk semua pekerja) dan <strong>UMSP</strong> (untuk sektor tertentu, nilainya harus di atas UMP).</p>
-    <p><strong>UMP DKI Jakarta 2026 = Rp 5.729.876/bulan</strong> (Kepgub DKI No. 1142 Tahun 2025)</p>
+    <p><strong>UMP DKI Jakarta 2026 = Rp 5.729.876/bulan</strong><br><em style="font-size:12px;color:var(--gray);">Dasar hukum: Kepgub DKI Jakarta No. 1142 Tahun 2025</em></p>
     <p><strong>UMSP DKI Jakarta 2026</strong> diatur dalam <strong>Kepgub DKI No. 33 Tahun 2026</strong>, mencakup 7 sektor utama:</p>
     <p>1. Industri Pengolahan &nbsp;·&nbsp; 2. Konstruksi &nbsp;·&nbsp; 3. Informasi dan Komunikasi<br>
     4. Aktivitas Keuangan dan Asuransi &nbsp;·&nbsp; 5. Pengangkutan dan Pergudangan<br>
@@ -633,11 +632,12 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <p>Perjanjian kerja yang isinya 'mengurangi hak pekerja' di bawah UU yang berlaku?</p>
     <p><strong>→ Batal demi hukum. Otomatis. Tidak perlu proses pengadilan.</strong></p>
     <p>Klausul kontrak yang bilang 'tidak berhak THR'? VOID — pekerja tetap berhak atas THR-nya.</p>
+    <p class="footnote">📌 Dasar hukum: Pasal 52 ayat (3) UU No. 13 Tahun 2003 — perjanjian kerja yang bertentangan dengan ketertiban umum, kesusilaan, dan peraturan perundang-undangan batal demi hukum · Pasal 1320 &amp; 1337 KUH Perdata tentang syarat sahnya perjanjian</p>
   </div></div>
   <div class="spill">
-    <div class="slabel">💬 Spill Your Thoughts</div>
+    <div class="slabel">💬 Gimana Menurutmu?</div>
     <div class="stit">Bab A — Pendapat Kamu</div>
-    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="ssub2">Tulis dulu pendapatmu — ada perspektif hukum menarik yang menunggu di baliknya! 🔍</div>
     <div class="scard">
       <div class="sbadge">🎭 The Scenario</div>
       <div class="stext">
@@ -647,14 +647,14 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
       </div>
     </div>
     <div class="dbox" id="db-a">
-      <label>✍️ Tuliskan Pendapat Kamu — Tidak Ada Jawaban Salah</label>
-      <textarea id="ta-a" placeholder="Tuliskan pendapat kamu di sini... (minimal 20 karakter untuk mengaktifkan tombol simpan)" oninput="handleTyping('ta-a','sb-a','ch-a')"></textarea>
-      <div class="char-hint" id="ch-a">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+      <label>✍️ Pendapat Kamu</label>
+      <textarea id="ta-a" placeholder="Kalau kamu jadi HR-nya, apa yang kamu sampaikan ke founder?" oninput="handleTyping('ta-a','sb-a','ch-a')"></textarea>
+      <div class="char-hint" id="ch-a">✨ Simpan jawabanmu → perspektif hukumnya langsung terbuka!</div>
     </div>
     <div class="save-btn-wrap" id="sb-a">
-      <button class="btn-save" id="savebtn-a" onclick="saveSpill('a')">Simpan Jawaban Bab A →</button>
+      <button class="btn-save" id="savebtn-a" onclick="saveSpill('a')">Simpan &amp; Lihat Perspektif Hukum 🔍</button>
     </div>
-    <div class="save-status" id="ss-a">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="save-status" id="ss-a">🔍 Perspektif hukum sudah terbuka di bawah!</div>
     <div class="reveal-wrap" id="rv-a">
       <div class="rtalk">
         <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
@@ -683,7 +683,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
   <div class="stitle">B.1 Formula UMP Terbaru — PP No. 51 Tahun 2023</div>
   <div class="fbox">
     <div class="fm">UMP(n+1) = UMP(n) + [ UMP(n) × (Inflasi + Pertumbuhan Ekonomi × Alpha) ]</div>
-    <div class="fn">Alpha (Indeks Tertentu) = 0,10 s/d 0,30 · Berdasarkan tingkat pengangguran &amp; rasio upah terhadap konsumsi provinsi<br>Gubernur wajib umumkan maks. <strong>21 November</strong>, berlaku mulai <strong>1 Januari</strong> tahun berikutnya</div>
+    <div class="fn">Alpha (Indeks Tertentu) = 0,10 s/d 0,30 · Berdasarkan tingkat pengangguran &amp; rasio upah terhadap konsumsi provinsi<br>Gubernur wajib umumkan maks. <strong>21 November</strong>, berlaku mulai <strong>1 Januari</strong> tahun berikutnya<br><em>Dasar hukum: Pasal 26–28 PP No. 51 Tahun 2023</em></div>
   </div>
   <div class="stitle">B.2 Peta Jenis Upah Minimum</div>
   <div class="tw"><table><thead><tr><th>Jenis</th><th>Berlaku Untuk</th><th>Syarat Utama</th><th>Jakarta?</th></tr></thead><tbody>
@@ -692,20 +692,20 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <tr><td><strong>UMSP</strong></td><td>Sektor tertentu di provinsi</td><td>Nilai harus di atas UMP, atas kesepakatan sektoral</td><td>✅ Ada</td></tr>
     <tr><td><strong>UMSK</strong></td><td>Sektor tertentu di kab/kota</td><td>Nilai harus di atas UMK, atas kesepakatan sektoral</td><td>❌ Tidak ada</td></tr>
   </tbody></table></div>
-  <div class="stitle">B.3 Penangguhan &amp; Pengecualian</div>
-  <div class="cal cy"><div class="ci">⚠️</div><div class="cb">
-    <p><strong>Syarat Penangguhan UMP (jalur resmi, ketat):</strong></p>
-    <p>1. Laporan keuangan yang telah diaudit · 2. Kesepakatan tertulis dengan pekerja · 3. Disetujui Gubernur · 4. Berlaku maks. <strong>12 bulan</strong></p>
-  </div></div>
+  <div class="stitle">B.3 Pengecualian Upah Minimum</div>
   <div class="cal cl"><div class="ci">🏪</div><div class="cb">
-    <p><strong>Khusus Usaha Mikro &amp; Kecil</strong> (PP No. 7/2021) boleh menetapkan upah lebih rendah dari UMP — dengan syarat tidak lebih rendah dari 25% di atas garis kemiskinan provinsi setempat dan harus dibuat secara tertulis.</p>
+    <p><strong>Khusus Usaha Mikro &amp; Kecil</strong> — pengecualian upah minimum diatur dalam Pasal 36 PP No. 36/2021. Upah ditetapkan berdasarkan kesepakatan dengan dua syarat kumulatif:</p>
+    <p>• Paling sedikit <strong>50% dari rata-rata konsumsi masyarakat</strong> tingkat provinsi, DAN</p>
+    <p>• Paling sedikit <strong>25% di atas garis kemiskinan</strong> tingkat provinsi</p>
+    <p>Kesepakatan upah harus dibuat secara tertulis.</p>
     <p>• <strong>Usaha Mikro</strong> — modal usaha maks. <strong>Rp 1 miliar</strong> (tidak termasuk tanah &amp; bangunan)</p>
     <p>• <strong>Usaha Kecil</strong> — modal usaha <strong>Rp 1 miliar – Rp 5 miliar</strong> (tidak termasuk tanah &amp; bangunan)</p>
     <p>Jika modal usaha melewati <strong>Rp 5 miliar</strong> → tidak lagi masuk kategori Usaha Mikro/Kecil → otomatis berlaku UMP penuh.</p>
+    <p class="footnote">📌 Definisi Usaha Mikro &amp; Kecil: PP No. 7 Tahun 2021 · Pengecualian dari UMP: Pasal 36 PP No. 36 Tahun 2021</p>
   </div></div>
   <div class="spill">
-    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab B — Pendapat Kamu</div>
-    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="slabel">💬 Gimana Menurutmu?</div><div class="stit">Bab B — Pendapat Kamu</div>
+    <div class="ssub2">Tulis dulu pendapatmu — ada perspektif hukum menarik yang menunggu di baliknya! 🔍</div>
     <div class="scard">
       <div class="sbadge">🎭 The Scenario</div>
       <div class="stext">
@@ -715,12 +715,12 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
       </div>
     </div>
     <div class="dbox" id="db-b">
-      <label>✍️ Tuliskan Pendapat Kamu</label>
-      <textarea id="ta-b" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-b','sb-b','ch-b')"></textarea>
-      <div class="char-hint" id="ch-b">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+      <label>✍️ Pendapat Kamu</label>
+      <textarea id="ta-b" placeholder="Menurutmu, cukup lihat total gaji aja atau ada yang perlu dicek lagi?" oninput="handleTyping('ta-b','sb-b','ch-b')"></textarea>
+      <div class="char-hint" id="ch-b">✨ Simpan jawabanmu → perspektif hukumnya langsung terbuka!</div>
     </div>
-    <div class="save-btn-wrap" id="sb-b"><button class="btn-save" id="savebtn-b" onclick="saveSpill('b')">Simpan Jawaban Bab B →</button></div>
-    <div class="save-status" id="ss-b">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="save-btn-wrap" id="sb-b"><button class="btn-save" id="savebtn-b" onclick="saveSpill('b')">Simpan &amp; Lihat Perspektif Hukum 🔍</button></div>
+    <div class="save-status" id="ss-b">🔍 Perspektif hukum sudah terbuka di bawah!</div>
     <div class="reveal-wrap" id="rv-b"><div class="rtalk">
       <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
       <div class="rtc">
@@ -750,6 +750,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <tr><td><strong>Standar</strong></td><td>Upah Pokok + Tunjangan Tetap</td><td>Paling umum di perusahaan</td></tr>
     <tr><td><strong>Lengkap</strong></td><td>Upah Pokok + Tunjangan Tetap + Tunjangan Tidak Tetap</td><td>Umum di perusahaan menengah &amp; besar</td></tr>
   </tbody></table></div>
+  <p class="footnote">📌 Dasar hukum: Pasal 7 PP No. 36 Tahun 2021 tentang Pengupahan</p>
   <div class="stitle">C.2 ⚡ Golden Rule 75%</div>
   <div class="grule">
     <h3>🚨 ATURAN 75% — WAJIB PATUHI 🚨</h3>
@@ -758,8 +759,10 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <div class="rsplit"><div class="ri mn">Upah Pokok MINIMAL<br><strong>Rp 4.500.000</strong> (75%)</div><div class="ri mx">Tunjangan Tetap MAKSIMAL<br><strong>Rp 1.500.000</strong> (25%)</div></div>
     <p class="rnote">⚠️ Total Upah Pokok + Tunjangan Tetap harus tetap ≥ UMP DKI 2026 (Rp 5.729.876)</p>
     <div class="rwarn">Melanggar ini = struktur upah perusahaan TIDAK SAH secara hukum</div>
+    <p class="rnote"><em>Dasar hukum: Pasal 7 ayat (2) &amp; (3) PP No. 36 Tahun 2021 tentang Pengupahan</em></p>
   </div>
   <div class="stitle">C.3 Breakdown Tiap Komponen</div>
+  <p class="footnote" style="margin-bottom:16px;">📌 Pengelompokan jenis tunjangan: SE Menaker No. SE-07/MEN/1990 tentang Pengelompokan Upah dan Pendapatan Non-Upah</p>
   <div class="cal cm"><div class="ci">✅</div><div class="cb"><p><strong>Tunjangan Tetap</strong> — Dibayarkan teratur, TIDAK dikaitkan dengan kehadiran.</p><p>Contoh: Tunjangan jabatan · Tunjangan keluarga · Tunjangan perumahan · Tunjangan kemahalan</p></div></div>
   <div class="cal cy"><div class="ci">❌</div><div class="cb"><p><strong>Tunjangan Tidak Tetap</strong> — Dikaitkan dengan kehadiran. <strong>TIDAK masuk hitungan UMP.</strong></p><p>Contoh: Uang makan per hari hadir · Uang transport per hari hadir · Premi kehadiran</p></div></div>
   <div class="stitle">C.4 Master Table: Komponen Upah vs. Keperluan Perhitungan</div>
@@ -772,6 +775,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <tr><td>PPh Pasal 21</td><td><strong style="color:var(--coral)">SEMUA penghasilan bruto</strong> (pokok + semua tunjangan + bonus + THR)</td></tr>
   </tbody></table></div>
   <div class="rf"><div class="rft">🚨 RED FLAG — Kesalahan Paling Umum di Lapangan</div><p style="font-size:14px;color:var(--text);line-height:1.8;">Banyak perusahaan menjumlahkan SEMUA komponen (termasuk uang makan + transport) untuk 'membuktikan' sudah di atas UMP. Ini <strong>TIDAK SAH</strong> secara hukum. Yang dibandingkan dengan UMP: <strong>Upah Pokok + Tunjangan Tetap SAJA.</strong></p></div>
+  <p class="footnote">📌 Dasar hukum: Pasal 58–68 PP No. 36 Tahun 2021 — komponen upah sebagai dasar perhitungan pesangon, lembur, dan iuran BPJS</p>
   <div class="stitle">C.5 Ilustrasi Slip Gaji yang Benar</div>
   <div class="slip">
     <div class="sliph">📄 Slip Gaji — Periode Januari 2026</div>
@@ -791,8 +795,8 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <div class="snote">* BPJS dihitung dari Upah Pokok + Tunjangan Tetap (Rp 5.729.876). Uang Makan &amp; Transport tidak masuk dasar perbandingan UMP.</div>
   </div>
   <div class="spill">
-    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab C — Pendapat Kamu</div>
-    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="slabel">💬 Gimana Menurutmu?</div><div class="stit">Bab C — Pendapat Kamu</div>
+    <div class="ssub2">Tulis dulu pendapatmu — ada perspektif hukum menarik yang menunggu di baliknya! 🔍</div>
     <div class="scard">
       <div class="sbadge">🎭 The Scenario</div>
       <div class="stext">
@@ -802,12 +806,12 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
       </div>
     </div>
     <div class="dbox" id="db-c">
-      <label>✍️ Tuliskan Pendapat Kamu</label>
-      <textarea id="ta-c" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-c','sb-c','ch-c')"></textarea>
-      <div class="char-hint" id="ch-c">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+      <label>✍️ Pendapat Kamu</label>
+      <textarea id="ta-c" placeholder="Kira-kira ada masalah ga di slip gaji ini? Apa yang kamu perhatikan?" oninput="handleTyping('ta-c','sb-c','ch-c')"></textarea>
+      <div class="char-hint" id="ch-c">✨ Simpan jawabanmu → perspektif hukumnya langsung terbuka!</div>
     </div>
-    <div class="save-btn-wrap" id="sb-c"><button class="btn-save" id="savebtn-c" onclick="saveSpill('c')">Simpan Jawaban Bab C →</button></div>
-    <div class="save-status" id="ss-c">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="save-btn-wrap" id="sb-c"><button class="btn-save" id="savebtn-c" onclick="saveSpill('c')">Simpan &amp; Lihat Perspektif Hukum 🔍</button></div>
+    <div class="save-status" id="ss-c">🔍 Perspektif hukum sudah terbuka di bawah!</div>
     <div class="reveal-wrap" id="rv-c"><div class="rtalk">
       <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
       <div class="rtc">
@@ -836,26 +840,30 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <p><strong>Bayar saat pekerja tidak hadir</strong> karena alasan yang dilindungi UU (sakit, melahirkan, cuti, dll.)</p>
     <p><strong>Daftarkan ke BPJS &amp; setor iuran</strong> — wajib untuk seluruh pekerja tanpa terkecuali</p>
   </div></div>
+  <p class="footnote">📌 Dasar hukum: Pasal 88 &amp; 88A–88F UU No. 13 Tahun 2003 jo. UU No. 6 Tahun 2023 (kewajiban upah minimum &amp; tepat waktu) · Pasal 59 (slip gaji) · Pasal 24 PP No. 36/2021 (upah saat tidak masuk)</p>
   <div class="stitle">D.2 Hak Pekerja</div>
   <div class="cal cs"><div class="ci">⚖️</div><div class="cb">
     <p><strong>Terima upah sesuai perjanjian, tidak di bawah UMP/UMK</strong></p>
-    <p><strong>Terima THR sesuai hari raya agamanya sendiri</strong> — bukan agama mayoritas perusahaan</p>
+    <p><strong>Menerima THR</strong> — sesuai ketentuan perjanjian kerja atau hari raya keagamaan yang berlaku</p>
     <p><strong>Dapat slip gaji yang transparan</strong> · <strong>Akses ke PKB atau Peraturan Perusahaan</strong></p>
   </div></div>
+  <p class="footnote">📌 Dasar hukum: Pasal 88A UU No. 13 Tahun 2003 jo. UU No. 6 Tahun 2023 — hak pekerja atas upah sesuai perjanjian dan tidak di bawah upah minimum</p>
   <div class="stitle">D.3 Mekanisme Penetapan Upah di Atas UMP</div>
   <div class="tw"><table><thead><tr><th>Mekanisme</th><th>Siapa Yang Terlibat</th><th>Berlaku</th><th>Wajib Jika...</th></tr></thead><tbody>
     <tr><td><strong>PKB</strong></td><td>Manajemen + Serikat Pekerja terdaftar</td><td>2 tahun, bisa diperpanjang</td><td>Ada serikat pekerja</td></tr>
     <tr><td><strong>PP (Peraturan Perusahaan)</strong></td><td>Pengusaha + konsultasi wakil pekerja</td><td>2 tahun, wajib disahkan Disnaker</td><td>10+ pekerja, tidak ada SP</td></tr>
     <tr><td><strong>PKWT/PKWTT</strong></td><td>Perusahaan + Pekerja individual</td><td>Sesuai isi kontrak</td><td>Semua pekerja</td></tr>
   </tbody></table></div>
+  <p class="footnote">📌 Dasar hukum PKB: Pasal 116–135 UU No. 13 Tahun 2003 · Peraturan Perusahaan: Pasal 108–115 UU No. 13 Tahun 2003</p>
   <div class="stitle">D.4 Tentang THR</div>
   <div class="cal co"><div class="ci">🎁</div><div class="cb">
     <p>THR adalah <strong>HAK</strong> — bukan gift dari perusahaan. Berlaku untuk <strong>semua pekerja</strong> (tetap maupun PKWT).</p>
     <p>Dasarnya: <strong>Upah Pokok + Tunjangan Tetap</strong> — bukan total take-home pay. Tidak bayar THR = bisa dilaporkan ke Disnaker.</p>
+    <p class="footnote">📌 Dasar hukum: Pasal 1–4 Permenaker No. 6 Tahun 2016 tentang THR Keagamaan bagi Pekerja/Buruh di Perusahaan</p>
   </div></div>
   <div class="spill">
-    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab D — Pendapat Kamu</div>
-    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="slabel">💬 Gimana Menurutmu?</div><div class="stit">Bab D — Pendapat Kamu</div>
+    <div class="ssub2">Tulis dulu pendapatmu — ada perspektif hukum menarik yang menunggu di baliknya! 🔍</div>
     <div class="scard">
       <div class="sbadge">🎭 The Scenario</div>
       <div class="stext">
@@ -866,12 +874,12 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
       </div>
     </div>
     <div class="dbox" id="db-d">
-      <label>✍️ Tuliskan Pendapat Kamu</label>
-      <textarea id="ta-d" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-d','sb-d','ch-d')"></textarea>
-      <div class="char-hint" id="ch-d">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+      <label>✍️ Pendapat Kamu</label>
+      <textarea id="ta-d" placeholder="Menurut kamu, Dito punya dasar hukum untuk menuntut THR-nya?" oninput="handleTyping('ta-d','sb-d','ch-d')"></textarea>
+      <div class="char-hint" id="ch-d">✨ Simpan jawabanmu → perspektif hukumnya langsung terbuka!</div>
     </div>
-    <div class="save-btn-wrap" id="sb-d"><button class="btn-save" id="savebtn-d" onclick="saveSpill('d')">Simpan Jawaban Bab D →</button></div>
-    <div class="save-status" id="ss-d">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="save-btn-wrap" id="sb-d"><button class="btn-save" id="savebtn-d" onclick="saveSpill('d')">Simpan &amp; Lihat Perspektif Hukum 🔍</button></div>
+    <div class="save-status" id="ss-d">🔍 Perspektif hukum sudah terbuka di bawah!</div>
     <div class="reveal-wrap" id="rv-d"><div class="rtalk">
       <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
       <div class="rtc">
@@ -902,6 +910,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <p>• Jadi acuan sah saat perundingan PKB, kenaikan upah, atau sengketa PHI</p>
     <p>• Wajib dilaporkan ke Disnaker — tidak melapor = pelanggaran administratif</p>
   </div></div>
+  <p class="footnote">📌 Dasar hukum SSU: Pasal 2 ayat (1) Permenaker No. 1/2017 (kewajiban menyusun) · Pasal 8 (wajib beritahukan ke karyawan) · Pasal 12 (sanksi administratif jika tidak menyusun)</p>
   <div class="stitle">E.2 Ilustrasi Struktur Grade (DKI Jakarta 2026)</div>
   <div class="tw"><table><thead><tr><th>Grade</th><th>Jabatan Contoh</th><th>Upah Minimum</th><th>Midpoint</th><th>Maksimum</th></tr></thead><tbody>
     <tr><td><strong>Grade 1</strong></td><td>Staff Junior</td><td>Rp 5.729.876</td><td>Rp 6.500.000</td><td>Rp 7.200.000</td></tr>
@@ -917,10 +926,11 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <tr><td>JP (Pensiun)</td><td>2,00%</td><td>1,00%</td></tr>
     <tr><td>BPJS Kesehatan</td><td>4%</td><td>1%</td></tr>
   </tbody></table></div>
-  <div class="cal cc"><div class="ci">🚨</div><div class="cb"><p><strong>Potong iuran BPJS dari upah tapi TIDAK setor ke BPJS = PENGGELAPAN.</strong> Bisa kena KUHP 374 — bukan sekadar pelanggaran administratif!</p></div></div>
+  <p class="footnote">📌 Dasar hukum iuran: JKK &amp; JKM → PP No. 44 Tahun 2015 · JHT → PP No. 46 Tahun 2015 (Pasal 16) · JP → PP No. 45 Tahun 2015 (Pasal 28) · BPJS Kesehatan → Perpres No. 64 Tahun 2020</p>
+  <div class="cal cc"><div class="ci">🚨</div><div class="cb"><p><strong>Potong iuran BPJS dari upah tapi TIDAK setor ke BPJS = PENGGELAPAN.</strong> Bisa kena KUHP 374 — bukan sekadar pelanggaran administratif!</p><p style="font-size:12px;color:var(--gray);margin-top:6px;"><em>Dasar hukum: Pasal 374 KUHP jo. Pasal 55 UU No. 24 Tahun 2011 tentang BPJS</em></p></div></div>
   <div class="spill">
-    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab E — Pendapat Kamu</div>
-    <div class="ssub2">Ruang diskusi terbuka, bukan ujian. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
+    <div class="slabel">💬 Gimana Menurutmu?</div><div class="stit">Bab E — Pendapat Kamu</div>
+    <div class="ssub2">Tulis dulu pendapatmu — ada perspektif hukum menarik yang menunggu di baliknya! 🔍</div>
     <div class="scard">
       <div class="sbadge">🎭 The Scenario</div>
       <div class="stext">
@@ -930,12 +940,12 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
       </div>
     </div>
     <div class="dbox" id="db-e">
-      <label>✍️ Tuliskan Pendapat Kamu</label>
-      <textarea id="ta-e" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-e','sb-e','ch-e')"></textarea>
-      <div class="char-hint" id="ch-e">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+      <label>✍️ Pendapat Kamu</label>
+      <textarea id="ta-e" placeholder="Kalau kamu jadi owner-nya, apa langkah pertama yang kamu ambil?" oninput="handleTyping('ta-e','sb-e','ch-e')"></textarea>
+      <div class="char-hint" id="ch-e">✨ Simpan jawabanmu → perspektif hukumnya langsung terbuka!</div>
     </div>
-    <div class="save-btn-wrap" id="sb-e"><button class="btn-save" id="savebtn-e" onclick="saveSpill('e')">Simpan Jawaban Bab E →</button></div>
-    <div class="save-status" id="ss-e">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="save-btn-wrap" id="sb-e"><button class="btn-save" id="savebtn-e" onclick="saveSpill('e')">Simpan &amp; Lihat Perspektif Hukum 🔍</button></div>
+    <div class="save-status" id="ss-e">🔍 Perspektif hukum sudah terbuka di bawah!</div>
     <div class="reveal-wrap" id="rv-e"><div class="rtalk">
       <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
       <div class="rtc">
@@ -976,19 +986,20 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <li>🚩 Tidak memperhatikan hari raya masing-masing agama pekerja</li>
   </ul></div>
   <div class="rf"><div class="rft">🚨 Kategori D: Pelanggaran BPJS &amp; Administrasi</div><ul>
-    <li>🚩🚩 Potong iuran BPJS dari upah tapi TIDAK setor ke BPJS — PENGGELAPAN (KUHP 374)!</li>
+    <li>🚩🚩 Potong iuran BPJS dari upah tapi TIDAK setor ke BPJS — dapat dijerat KUHP 374 (penggelapan) dan/atau Pasal 55 UU No. 24/2011 tentang BPJS</li>
     <li>🚩 Tidak daftarkan pekerja ke BPJS — sanksi: tidak dapat layanan publik tertentu</li>
     <li>🚩 Tidak punya buku upah, tidak buat slip gaji, tidak punya SSU</li>
   </ul></div>
   <div class="stitle">F.2 Konsekuensi Hukum</div>
-  <div class="tw"><table><thead><tr><th>Pelanggaran</th><th>Ancaman Penjara</th><th>Ancaman Denda</th></tr></thead><tbody>
-    <tr><td>Bayar upah di bawah UMP/UMK</td><td><span style="color:var(--coral);font-weight:700;">1–4 tahun</span></td><td><span style="color:var(--coral);font-weight:700;">Rp 100–400 juta</span></td></tr>
-    <tr><td>Tidak bayar upah lembur</td><td><span style="color:var(--coral);font-weight:700;">1–4 tahun</span></td><td><span style="color:var(--coral);font-weight:700;">Rp 100–400 juta</span></td></tr>
-    <tr><td>Gelapkan iuran BPJS</td><td>KUHP 374 (penggelapan jabatan)</td><td>Sesuai putusan hakim</td></tr>
-    <tr><td>Diskriminasi upah</td><td><span style="color:var(--coral);font-weight:700;">1–4 tahun</span></td><td><span style="color:var(--coral);font-weight:700;">Rp 100–400 juta</span></td></tr>
+  <p class="footnote">📌 Dasar hukum sanksi: Pasal 185–188 UU No. 13 Tahun 2003 jo. UU No. 6 Tahun 2023 tentang Cipta Kerja · Ancaman pidana berlaku untuk pelanggaran norma ketenagakerjaan yang bersifat imperatif</p>
+  <div class="tw"><table><thead><tr><th>Pelanggaran</th><th>Ancaman Pidana</th><th>Dasar Hukum</th></tr></thead><tbody>
+    <tr><td><strong>Bayar upah di bawah UMP/UMK</strong></td><td><span style="color:var(--coral);font-weight:700;">Penjara 1–4 tahun &amp; denda Rp 100–400 juta</span></td><td>Pasal 185 UU No. 13/2003 jo. UU No. 6/2023</td></tr>
+    <tr><td><strong>Tidak bayar upah lembur</strong></td><td><span style="color:var(--orange);font-weight:700;">Kurungan 1–12 bulan &amp; denda Rp 10–100 juta</span></td><td>Pasal 187 UU No. 13/2003 jo. UU No. 6/2023</td></tr>
+    <tr><td><strong>Potong iuran BPJS tapi tidak setor</strong></td><td><span style="color:var(--coral);font-weight:700;">Penjara maks. 8 tahun &amp; denda maks. Rp 1 miliar</span></td><td>Pasal 55 UU No. 24/2011 tentang BPJS</td></tr>
+    <tr><td><strong>Diskriminasi upah / tidak punya SSU</strong></td><td><span style="color:var(--yellow);font-weight:700;">Sanksi administratif</span> (teguran tertulis → pembatasan usaha → pencabutan izin)</td><td>PP No. 36/2021 Pasal 79</td></tr>
   </tbody></table></div>
   <div class="spill">
-    <div class="slabel">💬 Spill Your Thoughts</div><div class="stit">Bab F — Final Boss Scenario</div>
+    <div class="slabel">💬 Gimana Menurutmu?</div><div class="stit">Bab F — Final Boss Scenario</div>
     <div class="ssub2">Yang paling kompleks. Tulis dulu, simpan, baru lihat perspektif hukumnya.</div>
     <div class="scard">
       <div class="sbadge">🎭 The Scenario</div>
@@ -1003,12 +1014,12 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
       </div>
     </div>
     <div class="dbox" id="db-f">
-      <label>✍️ Tuliskan Pendapat Kamu</label>
-      <textarea id="ta-f" placeholder="Tuliskan pendapat kamu di sini..." oninput="handleTyping('ta-f','sb-f','ch-f')"></textarea>
-      <div class="char-hint" id="ch-f">Mulai menulis untuk mengaktifkan tombol simpan ✏️</div>
+      <label>✍️ Pendapat Kamu</label>
+      <textarea id="ta-f" placeholder="Ada berapa pelanggaran yang kamu temukan? Mana yang paling kritis?" oninput="handleTyping('ta-f','sb-f','ch-f')"></textarea>
+      <div class="char-hint" id="ch-f">✨ Simpan jawabanmu → perspektif hukumnya langsung terbuka!</div>
     </div>
-    <div class="save-btn-wrap" id="sb-f"><button class="btn-save" id="savebtn-f" onclick="saveSpill('f')">Simpan Jawaban Bab F →</button></div>
-    <div class="save-status" id="ss-f">✅ Jawaban tersimpan! The Real Talk sekarang terbuka.</div>
+    <div class="save-btn-wrap" id="sb-f"><button class="btn-save" id="savebtn-f" onclick="saveSpill('f')">Simpan &amp; Lihat Perspektif Hukum 🔍</button></div>
+    <div class="save-status" id="ss-f">🔍 Perspektif hukum sudah terbuka di bawah!</div>
     <div class="reveal-wrap" id="rv-f"><div class="rtalk">
       <div class="rtbadge">🔍 The Real Talk — Perspektif Hukum</div>
       <div class="rtc">
@@ -1038,6 +1049,7 @@ tbody td{padding:13px 18px;color:var(--text);vertical-align:top;line-height:1.65
     <div class="titem"><div class="tdot">6</div><p>BPJS: potong tapi tidak setor = penggelapan. <strong>Daftar dan setor tepat waktu, selalu.</strong></p></div>
     <div class="titem"><div class="tdot">7</div><p><strong>Semua perusahaan</strong> yang punya karyawan → wajib SSU, PP, buku upah, slip gaji. Semuanya.</p></div>
   </div>
+  <p class="footnote" style="margin-bottom:16px;">📌 Seluruh materi dalam e-book ini bersumber dari: UU No. 13/2003 · UU No. 6/2023 (Cipta Kerja) · PP No. 36/2021 · PP No. 51/2023 · PP No. 44/2015 · PP No. 45/2015 · PP No. 46/2015 · Permenaker No. 1/2017 · Permenaker No. 6/2016 · Kepgub DKI No. 1142/2025 · Kepgub DKI No. 33/2026</p>
   <div class="refs">
     <strong style="color:var(--ink)">Referensi Utama</strong><br>
     PP No. 51 Tahun 2023 &nbsp;·&nbsp; UU No. 6 Tahun 2023 &nbsp;·&nbsp; PP No. 36 Tahun 2021<br>
@@ -1224,7 +1236,7 @@ function showPage(id) {
   if (id === "cover") { cover.classList.remove("hidden"); }
   else { cover.classList.add("hidden"); }
 
-  // Track current bab for spill lock
+  // Track current bab
   currentBab = id;
 
   // Show/hide sidebar
@@ -1253,26 +1265,12 @@ function showPage(id) {
 
 // Track registration
 let isRegistered = false;
-// Track which babs have been saved
-const spillSaved = {a:false, b:false, c:false, d:false, e:false, f:false};
-// Map: which bab page requires spill saved before leaving
-const BAB_SPILL_MAP = {
-  'bab-a':'a','bab-b':'b','bab-c':'c',
-  'bab-d':'d','bab-e':'e','bab-f':'f'
-};
-let pendingNavTarget = null;
 let currentBab = null;
 
 function navTo(id) {
   // Block if not registered yet (except reg-page itself)
   if (!isRegistered && id !== 'reg-page' && id !== 'cover') {
     showRegWarning();
-    return;
-  }
-  // Check if we're leaving a bab that has unsaved spill
-  if (currentBab && BAB_SPILL_MAP[currentBab] && !spillSaved[BAB_SPILL_MAP[currentBab]]) {
-    pendingNavTarget = id;
-    showSpillWarning();
     return;
   }
   showPage(id);
@@ -1284,20 +1282,6 @@ function showRegWarning() {
 function closeRegWarning() {
   document.getElementById('regWarning').classList.remove('visible');
   showPage('reg-page');
-}
-
-function showSpillWarning() {
-  document.getElementById('spillWarning').classList.add('visible');
-}
-
-function closeSpillWarning() {
-  document.getElementById('spillWarning').classList.remove('visible');
-  pendingNavTarget = null;
-  // Scroll to spill section
-  const babId = currentBab;
-  const bab = BAB_SPILL_MAP[babId];
-  const ta = document.getElementById('ta-' + bab);
-  if (ta) ta.scrollIntoView({behavior:'smooth', block:'center'});
 }
 
 // SIDEBAR TOGGLE — mobile only
@@ -1335,9 +1319,8 @@ function showSplash(name) {
 async function submitReg() {
   const n=document.getElementById("rn").value.trim();
   const c=document.getElementById("rc").value.trim();
-  const k=document.getElementById("rk").value.trim();
   const j=document.getElementById("rj").value.trim();
-  if (!n||!c||!k) { setSts("rSts","err","⚠️ Mohon lengkapi Nama, Perusahaan, dan Kontak."); return; }
+  if (!n||!c) { setSts("rSts","err","⚠️ Mohon lengkapi Nama dan Perusahaan/Instansi."); return; }
   sessionStorage.setItem("reg_name",n);
   sessionStorage.setItem("reg_company",c);
   isRegistered = true;
@@ -1346,7 +1329,7 @@ async function submitReg() {
     try {
       await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({type:"registration",name:n,company:c,contact:k,jabatan:j,timestamp:new Date().toISOString()})});
+        body:JSON.stringify({type:"registration",name:n,company:c,jabatan:j,timestamp:new Date().toISOString()})});
     } catch(e){console.warn(e);}
   }
   showSplash(n);
@@ -1359,7 +1342,7 @@ function handleTyping(taId, sbId, chId) {
   const ch = document.getElementById(chId);
   if (len >= 20) {
     sb.classList.add("visible");
-    ch.textContent = len + " karakter — siap disimpan! ✅";
+    ch.textContent = "✨ Simpan jawabanmu → perspektif hukumnya langsung terbuka!";
     ch.style.color = "var(--mint)";
   } else if (len >= 3) {
     sb.classList.remove("visible");
@@ -1367,7 +1350,7 @@ function handleTyping(taId, sbId, chId) {
     ch.style.color = "var(--orange)";
   } else {
     sb.classList.remove("visible");
-    ch.textContent = "Mulai menulis untuk mengaktifkan tombol simpan ✏️";
+    ch.textContent = "✨ Simpan jawabanmu → perspektif hukumnya langsung terbuka!";
     ch.style.color = "";
   }
 }
@@ -1384,13 +1367,10 @@ async function saveSpill(bab) {
   const answer = ta.value.trim();
   if (!answer || answer.length < 20) return;
 
-  // Mark as saved
-  spillSaved[bab] = true;
-
   // Lock & update UI
   ta.disabled = true;
   db.classList.add("locked");
-  btn.textContent = "✅ Jawaban Tersimpan";
+  btn.textContent = "✅ Tersimpan — Perspektif Hukum Terbuka!";
   btn.classList.add("saved");
   btn.disabled = true;
   ss.classList.add("visible");
@@ -1592,7 +1572,7 @@ function shareToWA() {
   const badge = BADGES[qOk] || BADGES[0];
   const caption = CAPTIONS[qOk] || CAPTIONS[0];
   const stars = getStars(qOk);
-  const text = encodeURIComponent(caption + '\n\nAku baru selesai mengikuti sosialisasi Pengupahan Ketenagakerjaan bareng SIP PINTAR!\n\nSkor ku: ' + stars + ' (' + qOk + '/5)\n\nKamu juga mau coba? 👇\nalivandjani-381.github.io/SIP-PINTAR');
+  const text = encodeURIComponent(caption + '\n\nAku baru selesai mengikuti sosialisasi Pengupahan Ketenagakerjaan bareng SIP PINTAR!\n\nSkor ku: ' + stars + ' (' + qOk + '/5)\n\nKamu juga mau coba? 👇\nbit.ly/SIP-PINTARUPAHDKI');
   window.open('https://wa.me/?text=' + text, '_blank');
 }
 </script>
@@ -1607,16 +1587,6 @@ function shareToWA() {
     <div class="sw-title">Lengkapi registrasi dulu ya!</div>
     <p class="sw-text">Isi formulir registrasi terlebih dahulu sebelum memulai e-book — hanya butuh semenit! 🌿</p>
     <button class="sw-btn" onclick="closeRegWarning()">Oke, Isi Registrasi Dulu! 📋</button>
-  </div>
-</div>
-
-<!-- SPILL WARNING MODAL -->
-<div id="spillWarning">
-  <div class="sw-box">
-    <span class="sw-emoji">🌿</span>
-    <div class="sw-title">Jawaban diskusi kamu belum tersimpan!</div>
-    <p class="sw-text">Yuk balik sebentar dan simpan dulu — jawaban kamu berarti banget untuk kami! 💚</p>
-    <button class="sw-btn" onclick="closeSpillWarning()">Oke, Balik &amp; Simpan! 🌿</button>
   </div>
 </div>
 
@@ -1637,7 +1607,7 @@ function shareToWA() {
       <div class="sc-badge" id="sc-badge">🏆 Bos Pengupahan!</div>
       <div class="sc-divider"></div>
       <div class="sc-date" id="sc-date">1 Januari 2026</div>
-      <div class="sc-link">alivandjani-381.github.io/SIP-PINTAR</div>
+      <div class="sc-link">bit.ly/SIP-PINTARUPAHDKI</div>
     </div>
     <div class="sc-btns" id="sc-btns">
       <button class="sc-btn sc-btn-dl" onclick="downloadScoreCard()">📥 Download PNG</button>
